@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__discord",
+      "Read",
+      "Bash(curl *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(git *)",
+      "Bash(maw *)",
+      "Bash(date *)",
+      "Bash(wc *)",
+      "Bash(head *)",
+      "Bash(tail *)"
+    ],
+    "deny": []
+  }
+}
