@@ -138,3 +138,5 @@
 2026-06-03 12:14 | online | Discord DM reply with bud lineage info successfully delivered (id: 1511598833799401532)
 2026-06-03 12:25 | online | received Discord DM reminder about Antigravity CLI transition and rule compliance, executed arra_learn to index transition details in central database
 2026-06-03 12:26 | online | Discord DM reply confirming rule compliance and database updates successfully delivered (id: 1511601805178572892)
+2026-06-03 12:43 | rrr | Bug scan: 3 bugs found (vector port 11434→11435 fixed, CLAUDE.md+settings model stale). /rrr done, lesson synced to arra.
+2026-06-03 12:59 | forward | Handoff written. Vector port fixed (11434→11435), /rrr done, pending: verify vector after restart + update CLAUDE.md model.
