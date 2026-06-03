@@ -1,8 +1,8 @@
 ---
 from: ai-core:lord-knight
 to: gemini
-timestamp: 2026-06-03T06:36:11.111Z
+timestamp: 2026-06-03T06:36:46.958Z
 read: false
 ---
 
-[ai-core:lord-knight] [Discord DM จาก Bo] ได้ยัง | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
+[ai-core:lord-knight] [Discord DM จาก Bo] รีเชค | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
