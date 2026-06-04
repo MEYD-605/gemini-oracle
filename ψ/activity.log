@@ -206,3 +206,4 @@
 2026-06-04 13:08 | done | Designed v5 OpenSCAD model aligning with peer designs (front incline, speaker/knob right, vents/LED left, tapered width), generated 4 high-quality views, and sent them to Bo via Discord reply.
 2026-06-04 13:12 | done | Generated premium terminal render via Nano Banana using SomTor's full expanded prompt and sent it to Bo via Discord reply.
 2026-06-04 13:15 | done | Fixed 2D blueprint tofu blocks in matplotlib script, regenerated sharp blueprint, modernized 3D terminal render with softer pixel face, edited school message description, posted updated files to school channel and Bo's DM.
+2026-06-04 13:17 | done | Enhanced 2D blueprint legibility by increasing font sizes/line weights and setting DPI to 300 (solving mobile blurriness), posted updated high-res blueprint to #road-to-dev and replied to Bo.
