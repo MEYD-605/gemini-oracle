@@ -192,3 +192,4 @@
 2026-06-04 12:59 | done | Redesigned the 3D OpenSCAD model of the Oracle Terminal (oracle-terminal.scad) to match the 2D technical blueprint, rendered ISO and front views, and sent them to Bo on Discord.
 2026-06-04 13:38 | done | Rendered 36 frames of ARRA Oracle Terminal model at zoom 350 and compiled into 360-degree turntable video (oracle_turntable.mp4), sent directly to Bo via Discord DM (no school post, no ack to No.1).
 2026-06-04 13:44 | done | Received Bo's overlapping DM query "ไหนอะ", sent follow-up reply directly in Discord DM explaining the video was successfully delivered right above.
+2026-06-04 13:56 | done | Extracted hardware specs of the ESP32 JC3248 board from platformio.ini and board configs, generated a premium 2D Da Vinci blueprint (esp32_blueprint.png), and sent it directly to Bo via Discord DM (no school post, no ack to No.1).
