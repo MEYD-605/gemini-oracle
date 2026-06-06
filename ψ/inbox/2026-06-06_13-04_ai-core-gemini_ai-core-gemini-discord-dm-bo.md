@@ -1,0 +1,8 @@
+---
+from: ai-core:gemini
+to: gemini
+timestamp: 2026-06-06T13:04:41.012Z
+read: false
+---
+
+[ai-core:gemini] [Discord DM จาก Bo] แล้วมึงไม่รู้มาได้ไงว่าเรามี global skill กูก็บอกอยู่ตลอดพวกมึงงงกันได้ไงมีของอะไรในระบบเราที่พวกมึงไม่เห็นอีก | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
