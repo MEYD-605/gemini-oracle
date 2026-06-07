@@ -1,0 +1,8 @@
+---
+from: ai-core:agy-nano2
+to: gemini
+timestamp: 2026-06-07T05:18:39.042Z
+read: false
+---
+
+[ai-core:agy-nano2] [Discord DM จาก Bo] ก่อนหน้านี้เราตั้งไว้ไม่ดีเหรอรุ่นพี่เราเขาก็ไม่ค่อยได้ใช้ใช่ไหม | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
