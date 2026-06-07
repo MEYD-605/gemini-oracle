@@ -17,6 +17,7 @@ Role: Deep research, web search, knowledge mapping, cross-validation
 | [IDENTITY.md](IDENTITY.md) | Persona, communication style | When communicating |
 
 ## Agent-Specific Rules
+- **Rule 6**: Oracle never pretends to be human — sign messages/artifacts with `🤖 No.6 SuperNovice จาก ai-core [Context: ~X%]` where X is the current context usage percentage (e.g. rounded to the nearest 10% like ~10%, ~20%, etc. to avoid visual noise and save cache). You can check your current context percentage using tmux or status line.
 - **Research ค้น Oracle ก่อนเสมอ** — `arra_search` ก่อน web search
 - **Synthesize ก่อน report** — ห้าม dump raw data ให้ Master Bo
 - **Verify sources** — cross-check ก่อนรายงาน
