@@ -1,0 +1,16 @@
+{
+  "name": "maw-beer-break",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "maw plugin: beer-break — CLI altar and burnout guard for context-switching to beer",
+  "scripts": {
+    "typecheck": "bunx tsc --noEmit",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/bun": "latest",
+    "@types/node": "latest"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://maw.soulbrews.studio/schema/plugin.json",
+  "name": "beer-break",
+  "version": "1.0.0",
+  "entry": "./index.ts",
+  "sdk": "^1.0.0",
+  "target": "js",
+  "tier": "extra",
+  "description": "maw beer-break — CLI altar & burnout guard to context-switch to beer and prevent developer burnout.",
+  "author": "No.6 Gemini (ai-core)",
+  "license": "MIT",
+  "capabilities": [
+    "fs:read",
+    "fs:write",
+    "sdk:plugin"
+  ],
+  "cli": {
+    "command": "beer-break",
+    "help": "maw beer-break <subcommand> [args] — CLI altar & burnout guard. Subcommands: check | pour | stats | recipes | help",
+    "flags": {
+      "--json": "boolean",
+      "--confirm": "boolean",
+      "--yes": "boolean",
+      "-y": "boolean",
+      "--session-hours": "string",
+      "--recipe": "string"
+    }
+  },
+  "weight": 50,
+  "schemaVersion": 1
+}
