@@ -73,11 +73,18 @@
 **June 7** — Puppeteer Sandbox Bypass.
 - Documented Chromium `--no-sandbox` root bypass on LXC.
 
+**June 8** — Init and first CLI connections (Sessions `dbf3e3d9`, `6a4f7339`).
+- Session `dbf3e3d9`: Brief test initialization session.
+- Session `6a4f7339`: First integration of Master Bo with No.6 via Agy CLI. Inspected resources and configurations on LXC 110.
+
 **June 8-11** — Transition checks and homelab audit (Session `547e1274`).
 - Monitored and assisted the transition recovery of No.8 Agy Nano2.
 - Performed a deep trace/dig of past workshop commands.
 - Audited system storage and backups on LXC. Conserved report: [storage_backup_analysis_report.md](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/547e1274_storage_backup_analysis_report.md).
 - Generated 5 technical posters for the Oracle School. Artifact: [school_tech_poster_1.png](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/547e1274_school_tech_poster_1.png).
+
+**June 9** — Codebase bug verification (Session `60305d06`).
+- Reviewed `maw-js` core issue #2596 from P'Nat.
 
 **June 11** — Project "Panchavaggiya" (Session `09dc595b`).
 - Designed posters representing the Human and Oracle schools using generative design models for Master Bo.
@@ -87,10 +94,23 @@
 - Handled Discord queries on "daemon oracle school" status and AI Studio API transition.
 - Analyzed and tested open-source parametric alternatives like OpenSCAD, and ComfyUI video workflows with No.8. Audit results: [c898b2aa_audit_result.json](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/c898b2aa_audit_result.json).
 
+**June 12-13** — Gitleaks alert & board core logic audit (Session `07f6bf84`).
+- Addressed token leak warnings with Bo.
+- Audited core Svelte board dragging/pointer memory leaks and layout tiling NaNs. Reports: [07f6bf84_board_core_logic_findings_report.md](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/07f6bf84_board_core_logic_findings_report.md), [07f6bf84_mascot_exploration_results.md](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/07f6bf84_mascot_exploration_results.md), and [07f6bf84_mascot_exploration_v2.md](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/07f6bf84_mascot_exploration_v2.md).
+
+**June 13** — Codebase exploration (Sessions `deaca35b`, `30096ef1`, `2d9506e8`).
+- Parallel codebase subagent exploration sessions.
+
 **June 14** — No.8 crash recovery & workboard plugins (Session `7335b8ce`).
 - Restored No.8 agy-nano2 following a crash.
 - Set up portable packaging configurations for `maw-ssh`.
 - Formulated the recovery blueprint for `arra-oracle-v3`. Consolidated plan: [7335b8ce_arra_oracle_v3_recovery_plan.md](file:///root/Code/github.com/MEYD-605/gemini-oracle/ψ/reports/7335b8ce_arra_oracle_v3_recovery_plan.md).
+
+**June 15** — AI Studio API limits study (Session `adfb8fbf`).
+- Tested new token/quota limit logic and wake-up behaviors with Bo.
+
+**June 16** — Weird repo research (Session `bdca8471`).
+- Compiled a study on unique/unusual open-source repos and AI architectures for the school.
 
 **June 16-17** — Animated virtual pet packaging on ESP32 (Session `52b93851`).
 - Handled classroom settings diagnostics for No.10.
