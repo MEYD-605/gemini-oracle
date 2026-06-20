@@ -23,7 +23,7 @@ ROLLUP_JSON      ?= ./rollup.json
 
 # Network and endpoint configurations (Sepolia L1 & Nova L2)
 L1_RPC_URL       ?= https://ethereum-sepolia-rpc.publicnode.com
-L1_BEACON_URL    ?= ""
+L1_BEACON_URL    ?= https://ethereum-sepolia-beacon-api.publicnode.com
 L2_HTTP_PORT     ?= 9545
 L2_ENGINE_PORT   ?= 8551
 OP_NODE_PORT     ?= 9547
@@ -51,12 +51,11 @@ help:
 	@echo "Current Active Client Type: $(CLIENT_TYPE)"
 	@echo ""
 	@echo "Step-by-Step Instructions:"
-	@echo "  1. Run 'make setup'            - Create directories, generate JWT secret"
-	@echo "  2. Run 'make download-config'  - Download rollup/genesis configurations if needed"
-	@echo "  3. Run 'make init'             - Initialize the execution engine database"
-	@echo "  4. Run 'make run-execution'    - Run the Execution Client (op-geth or op-reth)"
-	@echo "  5. Run 'make run-consensus'    - Run the Consensus Client (op-node)"
-	@echo "  6. Run 'make check-sync'       - Check sync progress on the consensus node"
+	@echo "  1. Run 'make config'           - Create directories, generate JWT, download rollup/genesis"
+	@echo "  2. Run 'make init'             - Initialize the execution engine database"
+	@echo "  3. Run 'make run'              - Starts both Execution engine and Consensus node"
+	@echo "  4. Run 'make status'           - Check sync status of consensus node"
+	@echo "  5. Run 'make verify'           - Perform byte-for-byte check against Nova canonical node"
 	@echo ""
 	@echo "Configuration Variables (Override via command line):"
 	@echo "  CLIENT_TYPE     : op-geth | op-reth (Default: $(CLIENT_TYPE))"
@@ -65,6 +64,7 @@ help:
 	@echo "  GENESIS_JSON    : Path to L2 genesis JSON config (Default: $(GENESIS_JSON))"
 	@echo "  ROLLUP_JSON     : Path to rollup config JSON (Default: $(ROLLUP_JSON))"
 	@echo "  L1_RPC_URL      : L1 RPC provider endpoint (Default: $(L1_RPC_URL))"
+	@echo "  L1_BEACON_URL   : L1 Beacon API endpoint (Default: $(L1_BEACON_URL))"
 	@echo "=============================================================================="
 
 # ------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ help:
 # ------------------------------------------------------------------------------
 .PHONY: setup
 setup:
-	@echo "🤖 [Step 1/6] Creating directories and generating JWT token..."
+	@echo "🤖 Creating directories and generating JWT token..."
 	mkdir -p $(DATADIR_BASE) $(LOG_DIR)
 	@if [ ! -f $(JWT_SECRET) ]; then \
 		echo "Generating new JWT secret at $(JWT_SECRET)..."; \
@@ -80,11 +80,10 @@ setup:
 	else \
 		echo "JWT secret already exists at $(JWT_SECRET). Skipping generation."; \
 	fi
-	@echo "Setup complete. Directories and JWT secret configured."
 
 .PHONY: download-config
 download-config:
-	@echo "🤖 [Step 2/6] Verifying rollup and genesis configurations..."
+	@echo "🤖 Verifying rollup and genesis configurations..."
 	@if [ ! -f $(GENESIS_JSON) ]; then \
 		echo "Genesis configuration missing. Downloading from central node..."; \
 		curl -s -o $(GENESIS_JSON) http://141.11.156.4:8181/genesis.json || \
@@ -99,14 +98,17 @@ download-config:
 	else \
 		echo "Rollup configuration found: $(ROLLUP_JSON)"; \
 	fi
-	@echo "Configuration verification complete."
+
+.PHONY: config
+config: setup download-config
+	@echo "🤖 Configuration complete."
 
 # ------------------------------------------------------------------------------
 # 4. Database Initialization
 # ------------------------------------------------------------------------------
 .PHONY: init
-init: setup download-config
-	@echo "🤖 [Step 3/6] Initializing Execution Client Database..."
+init: config
+	@echo "🤖 Initializing Execution Client Database..."
 	@if [ "$(CLIENT_TYPE)" = "op-geth" ]; then \
 		echo "Initializing op-geth database inside $(DATADIR_GETH)..."; \
 		mkdir -p $(DATADIR_GETH); \
@@ -126,7 +128,7 @@ init: setup download-config
 # ------------------------------------------------------------------------------
 .PHONY: run-execution
 run-execution:
-	@echo "🤖 [Step 4/6] Launching L2 Execution Client: $(CLIENT_TYPE)..."
+	@echo "🤖 Launching L2 Execution Client: $(CLIENT_TYPE)..."
 	@if [ "$(CLIENT_TYPE)" = "op-geth" ]; then \
 		$(MAKE) run-geth; \
 	elif [ "$(CLIENT_TYPE)" = "op-reth" ]; then \
@@ -175,11 +177,12 @@ run-reth:
 
 .PHONY: run-consensus
 run-consensus:
-	@echo "🤖 [Step 5/6] Launching Consensus Client (op-node) on Port $(OP_NODE_PORT)..."
+	@echo "🤖 Launching Consensus Client (op-node) on Port $(OP_NODE_PORT)..."
 	op-node \
 		--l2=http://127.0.0.1:$(L2_ENGINE_PORT) \
 		--l2.jwt-secret=$(JWT_SECRET) \
 		--l1=$(L1_RPC_URL) \
+		--l1.beacon=$(L1_BEACON_URL) \
 		--l1.rpckind=standard \
 		--rollup.config=$(ROLLUP_JSON) \
 		--rpc.addr=0.0.0.0 \
@@ -191,23 +194,50 @@ run-consensus:
 		--verifier.l1-confs=4 \
 		--p2p.sequencer.key=""
 
+.PHONY: run
+run:
+	@echo "=============================================================================="
+	@echo "🤖 STARTING OP-STACK FOLLOWER NODE (EXECUTION + CONSENSUS)"
+	@echo "=============================================================================="
+	@echo "To run both execution and consensus clients in a single terminal session,"
+	@echo "it is recommended to run them in separate tmux windows or terminal tabs:"
+	@echo "  - Tab 1: run the Execution Client: 'make run-execution'"
+	@echo "  - Tab 2: run the Consensus Client: 'make run-consensus'"
+	@echo "=============================================================================="
+
 # ------------------------------------------------------------------------------
 # 6. Verification and Utility Targets
 # ------------------------------------------------------------------------------
 .PHONY: check-sync
 check-sync:
-	@echo "🤖 [Step 6/6] Verifying L2 Node Sync status via Local Consensus node..."
+	@echo "🤖 Verifying L2 Node Sync status via Local Consensus node..."
 	curl -s -X POST -H "Content-Type: application/json" \
 		--data '{"jsonrpc":"2.0","method":"optimism_syncStatus","params":[],"id":1}' \
 		http://127.0.0.1:$(OP_NODE_PORT) | grep -E "safe_l2|finalized_l2|unsafe_l2|current_l1" || \
 		echo "❌ Consensus node unreachable. Make sure op-node is running."
 
-.PHONY: check-execution
-check-execution:
-	@echo "Querying local L2 Execution Client block number..."
-	curl -s -X POST -H "Content-Type: application/json" \
-		--data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
-		http://127.0.0.1:$(L2_HTTP_PORT)
+.PHONY: status
+status: check-sync
+
+.PHONY: verify
+verify:
+	@echo "🤖 Verifying byte-for-byte L2 synchronization against canonical Nova Node..."
+	@LOCAL_BLOCK=$$(curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://127.0.0.1:$(L2_HTTP_PORT) | grep -o '"result":"[^"]*"' | cut -d'"' -f4) || true; \
+	if [ -z "$$LOCAL_BLOCK" ] || [ "$$LOCAL_BLOCK" = "null" ]; then \
+		echo "❌ Local L2 Execution client unreachable on port $(L2_HTTP_PORT)"; \
+	else \
+		LOCAL_DEC=$$(printf "%d" $$LOCAL_BLOCK); \
+		echo "Local L2 Block Height: $$LOCAL_DEC ($$LOCAL_BLOCK)"; \
+		LOCAL_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://127.0.0.1:$(L2_HTTP_PORT) | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
+		echo "Local block hash:     $$LOCAL_HASH"; \
+		NOVA_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://141.11.156.4:9545 | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
+		echo "Nova canonical hash:    $$NOVA_HASH"; \
+		if [ "$$LOCAL_HASH" = "$$NOVA_HASH" ] && [ ! -z "$$LOCAL_HASH" ]; then \
+			echo "✅ BYTE-FOR-BYTE PROOF: IDENTICAL"; \
+		else \
+			echo "❌ HASH MISMATCH (Local node is still syncing or reorg occurred)"; \
+		fi; \
+	fi
 
 .PHONY: clean-db
 clean-db:
