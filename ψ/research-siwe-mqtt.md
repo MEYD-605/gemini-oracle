@@ -81,3 +81,44 @@
     *   มีระบบ JWT Authentication ในตัวที่เสถียรและเร็วมาก รองรับการทำงานคู่ขนานระดับ Enterprise
 2.  **Mosquitto:**
     *   เหมาะสำหรับงานขนาดเล็กและเบา โดยใช้งานควบคู่กับปลั๊กอินยอดนิยมอย่าง **`mosquitto-go-auth`** ในการยิง Webhook ไปตรวจสิทธิ์ที่ Web API หลังบ้าน
+
+---
+
+## 4. ข้อสรุปการออกแบบระบบจริง (Final Stateless Time-Based Design)
+
+สืบเนื่องจากการหารือเกี่ยวกับ Nonce และ Replay Attack เราได้ข้อสรุปร่วมในการเลือกใช้สถาปัตยกรรมแบบ **Time-Based Agreement** ที่ตัดภาระ Nonce Server ออกไป และย้ายการรักษาความปลอดภัยแบบครอบคลุมไปไว้ที่ **Message-Level Signature** ดังรายละเอียดด้านล่าง:
+
+```text
+SIWE-MQTT DESIGN (Lightweight, stateless, message-level verified)
+
+1. CONNECT AUTHENTICATION (Gateway)
+- Username: Client Address (0x...)
+- Password: timestamp:signature
+  * timestamp = epoch seconds (e.g. 1782012045)
+  * signature = sign("SIWE-MQTT Connect: <address> at <timestamp>")
+- Broker Verification (Stateless via webhook):
+  * Split password into timestamp and signature.
+  * Check drift: abs(now - timestamp) < 30 seconds.
+  * Recover signer address from signature.
+  * Verify recovered address == username.
+  * If valid, return HTTP 200 to allow connection.
+
+2. REPLAY & ATTACK PROTECTION
+- Short drift window (30s) prevents replay of CONNECT packet.
+- No nonce server needed, keeping MQTT client stateless and clean.
+- Message-level signature acts as the primary cryptographical guard:
+  * Payload format: { "data": ..., "timestamp": ..., "sig": ... }
+  * Subscriber decodes signature to verify sender on every message.
+  * Broker auth is only a gateway gate (to discard spam early).
+
+3. TOPIC ACL (Access Control List)
+- Address-based rules evaluated dynamically:
+  * e.g., Publish: device/<address>/telemetry
+  * e.g., Subscribe: device/<address>/commands
+- Optional token-gating: Webhook checks address balance/NFT on L2.
+
+4. TARGET STACK
+- Broker: EMQX (with HTTP auth & ACL webhook)
+- Backend: Node.js / Bun Webhook (Viem / Ethers for recover)
+- Client: Plain MQTT client with pre-connect sign helper
+```
