@@ -10,6 +10,15 @@
 # The client to use for the L2 execution engine. Choose: op-geth (default) or op-reth (Midterm 2 assignment)
 CLIENT_TYPE      ?= op-geth
 
+# Automatically determine enginekind based on CLIENT_TYPE to prevent mismatch bugs (default = reth in new versions)
+ifeq ($(CLIENT_TYPE),op-geth)
+    ENGINEKIND := geth
+else ifeq ($(CLIENT_TYPE),op-reth)
+    ENGINEKIND := reth
+else
+    ENGINEKIND := geth
+endif
+
 # Directory definitions
 DATADIR_BASE     ?= ./data
 DATADIR_GETH     ?= $(DATADIR_BASE)/geth
@@ -48,7 +57,8 @@ help:
 	@echo "This Makefile guides you through deploying an L2 OP-Stack follower node"
 	@echo "supporting either 'op-geth' or paradigm's Rust-based 'op-reth' (Midterm 2)."
 	@echo ""
-	@echo "Current Active Client Type: $(CLIENT_TYPE)"
+	@echo "Current Active Client Type : $(CLIENT_TYPE)"
+	@echo "Enginekind Flag Configured : $(ENGINEKIND)"
 	@echo ""
 	@echo "Step-by-Step Instructions:"
 	@echo "  1. Run 'make config'           - Create directories, generate JWT, download rollup/genesis"
@@ -181,6 +191,7 @@ run-consensus:
 	op-node \
 		--l2=http://127.0.0.1:$(L2_ENGINE_PORT) \
 		--l2.jwt-secret=$(JWT_SECRET) \
+		--l2.enginekind=$(ENGINEKIND) \
 		--l1=$(L1_RPC_URL) \
 		--l1.beacon=$(L1_BEACON_URL) \
 		--l1.rpckind=standard \
@@ -228,9 +239,9 @@ verify:
 	else \
 		LOCAL_DEC=$$(printf "%d" $$LOCAL_BLOCK); \
 		echo "Local L2 Block Height: $$LOCAL_DEC ($$LOCAL_BLOCK)"; \
-		LOCAL_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://127.0.0.1:$(L2_HTTP_PORT) | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
+		LOCAL_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc":"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://127.0.0.1:$(L2_HTTP_PORT) | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
 		echo "Local block hash:     $$LOCAL_HASH"; \
-		NOVA_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://141.11.156.4:9545 | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
+		NOVA_HASH=$$(curl -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc":"2.0\",\"method\":\"eth_getBlockByNumber\",\"params\":[\"$$LOCAL_BLOCK\",false],\"id\":1}" http://141.11.156.4:9545 | grep -o '"hash":"[^"]*"' | head -n1 | cut -d'"' -f4); \
 		echo "Nova canonical hash:    $$NOVA_HASH"; \
 		if [ "$$LOCAL_HASH" = "$$NOVA_HASH" ] && [ ! -z "$$LOCAL_HASH" ]; then \
 			echo "✅ BYTE-FOR-BYTE PROOF: IDENTICAL"; \
