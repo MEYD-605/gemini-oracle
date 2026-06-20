@@ -122,3 +122,30 @@ SIWE-MQTT DESIGN (Lightweight, stateless, message-level verified)
 - Backend: Node.js / Bun Webhook (Viem / Ethers for recover)
 - Client: Plain MQTT client with pre-connect sign helper
 ```
+
+---
+
+## 5. การรองรับ MQTT Bridge และเปรียบเทียบการทำ Clustering (MQTT Bridge & Clustering Comparison)
+
+### 5.1 ข้อควรระวังในการทำ MQTT Bridging
+เนื่องจาก MQTT Bridge ทำงานเป็นเบื้องหลังโดยใช้ค่าคอนฟิกคงตัว (Static Config) ในไฟล์คอนฟิก ทำให้ระบบไม่สามารถสร้างลายเซ็นแบบไดนามิก (Dynamic SIWE) ทุกครั้งที่ Reconnect ได้ เพื่อความเข้ากันได้ เราต้องแบ่งแยกพอร์ตและสิทธิ์เข้าถึง:
+* **พอร์ตหลัก (Dynamic SIWE)**: สำหรับอุปกรณ์ปลายทาง (Edge) และผู้ใช้ทั่วไป
+* **พอร์ตสำหรับ Bridge (Static Auth/MTLS)**: สำหรับเชื่อมต่อระหว่างโบรกเกอร์ โดยอาจใช้ TLS Client Certificate (MTLS) หรือโทเค็นระยะยาว ร่วมกับการจำกัด ACL ให้คุยเฉพาะหัวข้อสำหรับ Bridge (`bridge/#`)
+
+### 5.2 การเลือกโบรกเกอร์ที่รองรับการทำ Clustering
+เมื่อต้องการขยายระบบเป็นคลัสเตอร์เพื่อรองรับการขยายตัวเชิงรุก (Horizontal Scaling) โบรกเกอร์ที่เหมาะสมมีดังนี้:
+
+1. **EMQX (แนะนำที่สุด)**
+   * **การทำ Cluster**: รองรับในตัวแบบ Native (ผ่าน Mnesia / Erlang Distribution)
+   * **จุดเด่น**: รองรับการเชื่อมต่อพร้อมกันสูงมาก ปรับแต่งสิทธิ์ผ่าน Webhook และมี Rule Engine ในตัวที่เสถียร เหมาะกับระบบสเกลใหญ่
+
+2. **VerneMQ (ทางเลือกประสิทธิภาพสูง)**
+   * **การทำ Cluster**: รองรับในตัวแบบ Native (Masterless Clustering)
+   * **จุดเด่น**: เบาและจัดการหน่วยความจำได้เร็วมาก สามารถเชื่อมต่อเขียนเว็บฮุกควบคุมการทำงานได้หลากหลาย
+
+3. **HiveMQ (Enterprise Grade)**
+   * **การทำ Cluster**: รองรับเฉพาะรุ่นจำหน่ายเชิงพาณิชย์ (Enterprise Edition) ส่วนเวอร์ชันชุมชน (Community Edition) จะไม่มีระบบคลัสเตอร์ติดตัวมาให้
+
+4. **Mosquitto (ไม่แนะนำสำหรับการทำ Native Cluster)**
+   * **การทำ Cluster**: ไม่มีระบบคลัสเตอร์ในตัว การขยายระบบมักใช้วิธีทำ Bridge ไปยังโหนดอื่น หรือการตั้ง Load Balancer ด้านหน้า ซึ่งมีความยุ่งยากในการจัดการเมื่อมีอุปกรณ์จำนวนมาก
+
