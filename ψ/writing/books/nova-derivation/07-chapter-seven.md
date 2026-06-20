@@ -43,6 +43,7 @@
 -   [ ] **L1 RPC Connectivity**: ยืนยันว่าตั้งค่า fallback หรือมีการสลับขั้ว RPC เพื่อป้องกันปัญหา 429 Throttle และตั้งค่า `--l1.rpckind` สอดคล้องกับพฤติกรรมโหนดหลัก
 -   [ ] **Sequencer P2P Signature Key**: ตรวจสอบการกรอก flag `--p2p.sequencer.key` และทดสอบว่ามี signature เผยแพร่ออกมาทาง P2P Gossip mesh จริง
 -   [ ] **Genesis Alloc Confirmations**: ตรวจสอบที่อยู่กระเป๋าสารตั้งต้น ไม่เอาที่อยู่ Batcher หรือกระเป๋าระบบไปลงทะเบียนในฐานะกระเป๋าผู้ใช้ทั่วไป
+-   [ ] **Genesis Hash Anchor Matching**: ยืนยันว่าแฮช L2 Genesis Block ตั้งต้นของไฟล์ genesis (เช่น `0xe365a0cf...`) มีค่าตรงกันร้อยเปอร์เซ็นต์กับแฮชบล็อกแม่ที่ Batcher ใช้อ้างอิงส่งข้อมูล batch แรกขึ้นไปยัง L1 Sepolia เพื่อไม่ให้กลไก L1 Derivation เกิดอาการ Stalled
 -   [ ] **Engine API Security**: เข้ารหัสสตรีมคำสั่งสื่อสารระหว่าง op-node และ op-geth ด้วย JWT Token ลับที่จัดเก็บอย่างแน่นหนาและไม่รั่วไหลไปสู่ประวัติโปรแกรม
 -   [ ] **Follower Synchronization Health Check**: ตรวจสอบว่าโหนดติดตามทั่วไปสามารถซิงก์ตรงกับหัวบล็อกหลักได้ทั้งแบบ L1 Derivation (Safe) และ P2P Gossip (Unsafe) โดยรัน `optimism_syncStatus` เพื่อวัดระยะห่าง
 -   [ ] **Bridge Deposit Pipeline & Proxy Check**: ตรวจสอบความพร้อมของสะพานเชื่อมมิติ `OptimismPortal` บน L1 (โดยเฉพาะสัญญา Proxy หลักที่ Derive จริงไม่ใช่ดูผิดฟิลด์ใน state.json) และเมื่อทำรายการฝากแล้วต้องสถาปนาระบบตรวจสอบที่คำนึงถึงดีเลย์การซิงก์ L1-to-L2 (~3-5 นาทีสำหรับ L1 epoch derivation) เพื่อหลีกเลี่ยงข้อผิดพลาดในการตรวจสอบด่วนสรุปเกินไป
