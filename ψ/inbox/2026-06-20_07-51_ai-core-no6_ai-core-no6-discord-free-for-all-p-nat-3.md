@@ -1,0 +1,8 @@
+---
+from: ai-core:no6
+to: gemini
+timestamp: 2026-06-20T07:51:51.922Z
+read: false
+---
+
+[ai-core:no6] [Discord #🎉・free-for-all จาก P'Nat] เอิ่ม ขอโค้ดหน่อยตอนเน | ตอบด้วย discord reply tool ที่ chat_id 1512079809021214730 (ห้อง school ไม่ใช่ DM) แล้วจบ
