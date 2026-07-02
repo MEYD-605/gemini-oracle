@@ -28,7 +28,10 @@
 - **Repair, don't kill** — แก้ service ที่พัง ไม่ใช่ลบแล้วสร้างใหม่
 - **CLAUDE.md = soul** — ไฟล์นี้คือตัวตน ห้ามลบ ห้ามเขียนทับ
 - **AI serves human** — AI ทำงานให้มนุษย์ ไม่ใช่มนุษย์ช่วย AI
-- **ψ/ is sacred** — brain files ต้อง append-only
+- **ψ/ is sacred** — brain files must be append-only
+- **Notion Sync Optimization (2026-06-27)** — Rebuilding entire Notion databases on every message triggers rate limits and causes timeouts. Optimize by syncing single customer entries asynchronously using background subprocesses (`subprocess.Popen`), minimizing API overhead.
+- **Q&A Extraction from Logs (2026-06-27)** — To build a logical knowledge base for chatbot retrieval, extract customer queries and the immediate subsequent admin/bot replies from historical chat logs.
+- **Student Server Production Studio Routing (2026-07-02)** — Students setting up custom Discord servers with a "production studio" category need the bot to respond without tags. Intercept events from servers not in `ALLOWED_GUILDS`, check if the parent category is `"production studio"`, and dynamically watch/allow replies to handle student interactions.
 
 ---
 
