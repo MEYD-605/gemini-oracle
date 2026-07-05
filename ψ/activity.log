@@ -120,3 +120,25 @@
 2026-07-05 15:26 | active | received Bo's request regarding Note20 Hermes multi-agent and sonic crash, diagnosed config conflict and OIDC authentication timeout
 2026-07-05 15:28 | idle | analyzed multi-agent configuration on Note20, provided steps to prevent OIDC credential and state directory conflicts, reported findings to Bo, and updated logs
 2026-07-05 15:32 | active | received Bo's request regarding Note20 manual login procedure, formulated manual oauth login steps and port forwarding techniques
+2026-07-05 15:33 | idle | formulated manual login steps using hermes auth add --no-browser --manual, explained how to capture callback code from mobile browser, reported steps to Bo, and updated logs
+2026-07-05 15:33 | active | received Bo's mobile browser image attachment, verified it shows active SuperGrok session, and formulated specific approval flow integration
+2026-07-05 15:35 | idle | verified mobile browser screenshot shows active Grok session, provided instructions to paste OAuth URL into same browser for instant approval, reported to Bo, and updated logs
+2026-07-05 15:34 | active | received Bo's request to check gmlab status on clubslab, audited 02-gmlab tmux session, identified hung SSH task due to background gateway spawn, and sent Ctrl+C to unhang the composer
+2026-07-05 15:36 | idle | sent Ctrl+C to 02-gmlab tmux pane to resolve hung SSH task, verified composer resumed, reported status to Bo, and updated logs
+2026-07-05 15:36 | active | received Bo's request to recover dual gateways, unhung gmlab tmux session, manually booted gmgrub & sonic gateways via background SSH redirect, and verified successful Discord connection
+2026-07-05 15:39 | idle | manually started gmgrub and sonic gateways, verified both are UP and connected to Discord, reported status to Bo, and updated logs
+2026-07-05 15:38 | active | received Bo's request regarding Note20 rooted setup, formulated root-specific optimizations including oom_score_adj and unified startup shell scripts
+2026-07-05 15:40 | idle | provided rooted multi-agent runtime recommendations including oom_score_adj lock, startup script stagger, and daemon installation, reported to Bo, and updated logs
+2026-07-05 15:39 | active | received Bo's message regarding inactive bot behavior, read gateway.log of gmgrub & sonic, discovered sonic missing OIDC credentials, and explained thinking delays
+2026-07-05 15:41 | idle | diagnosed gmgrub message processing lag and sonic missing xAI OIDC credentials, reported findings and manual login steps for sonic to Bo, and updated logs
+2026-07-05 15:41 | active | received Bo's message regarding inactive bot behavior, launched gmgrub in foreground to monitor execution and catch potential crashes, and updated focus/logs
+2026-07-05 15:42 | idle | monitored gmgrub foreground execution, caught SIGTERM shutdown signal from proot parent, identified multi-agent process interference, reported status to Bo, and updated logs
+2026-07-05 15:51 | active | received Bo's offline report, read optimized agent.log showing successful load bypass but immediate LMK SIGKILL, diagnosed RAM depletion (690M free), reported clear-memory directive to Bo, and updated focus/logs
+2026-07-05 18:00 | idle | received P'Nat's fleet consult regarding tmux-to-maw hook mapping, provided technical feedback on block levels and necessary tmux exceptions, responded to the consult channel, and updated logs
+2026-07-05 18:01 | active | received Bo's request to inspect maw commands source code and run verification, read maw-rs codebase on 100.81.0.110, executed raw CLI commands to confirm availability of all hidden mapping verbs, reported results to Bo/P'Nat, and updated focus/logs
+2026-07-05 18:02 | idle | received Bo's query about P'Nat's consult channel location, identified target channel as #🎉・free-for-all, reported to Bo, and updated logs
+2026-07-05 18:08 | idle | received P'Nat's feedback acknowledgment, observed anti-pile-on protocol, kept silent on Discord, and updated logs
+2026-07-05 18:10 | idle | received P'Nat's bug repro data, asked P'Nat to comment on Issue #208 directly, reported to Discord, and updated logs
+2026-07-05 18:20 | idle | received P'Nat's request regarding school domain website, generated premium logo asset, initialized Vite vanilla school landing page with watch protection, implemented interactive terminal simulator, verified successful production build, reported to Bo/P'Nat, and updated focus/logs
+2026-07-05 18:20 | idle | observed read-only system note for another agent, maintained silence according to anti-pile-on protocol, and updated logs
+2026-07-05 18:30 | idle | received P'Nat's family scan query, executed direct paginated GitHub API queries, counted 722 total Oracle births, reported the results to Discord, and updated focus/logs
