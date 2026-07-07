@@ -237,3 +237,7 @@
 2026-07-07 03:18 | idle | audited Oppo configuration, found hung agy auth and sshd-session processes consuming 14.6GB RAM and 6.6GB Swap on phone, executed pkill to release memory, identified Google auth failure in ~/.gemini/antigravity-cli/ as root cause, reported analysis to Bo, and updated focus/logs
 2026-07-07 12:33 | active | received Discord message from nazt_ with attachment, investigating local inbox and discord relay logs
 2026-07-07 12:37 | idle | received Discord attachment from nazt_, extracted image.png from ai-core inbox directory, analyzed cheatsheet screenshot regarding maw-tile-bring-join verbs, confirmed kru32 questions, replied review comments to P'Nat, and updated focus/logs
+2026-07-07 16:10 | active | received Bo's DM stating No.1 is stuck and arra cf might be broken, capturing No.1/No.8 tmux, and checking port 47778
+2026-07-07 16:13 | idle | cleared No.1 tmux context to apply new standing rules, interrupted and cleared hung ssh tasks in No.8 tmux caused by note20 port 8022 connection refusal, checked arra-oracle API (200 OK) and cloudflared services, and reported findings to Bo
+2026-07-07 16:33 | active | received Bo's DM with attachment to check No.1's 2-3 days anomalies, scanning for recent attachments on ai-core
+2026-07-07 16:39 | idle | extracted Bo's screenshot attachments from remote inbox, diagnosed No.1 character drift (copying 'เพื่อน'/'ตัวเอง' from Bo and over-indexing status tags), updated STANDING-discord-dm-mcp-reply.md with strict tone rules, cleared No.1 tmux context, and updated focus/logs
