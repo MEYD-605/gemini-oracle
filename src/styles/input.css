@@ -63,3 +63,25 @@ body::after {
   .kru-scan, .kru-pulse { animation: none; }
   .kru-scan { display: none; }
 }
+
+/* Custom scrollbar to match the Starry Night theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b2e52;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a467c;
+}
+/* Firefox scrollbar compatibility */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #1b2e52 transparent;
+}
+
