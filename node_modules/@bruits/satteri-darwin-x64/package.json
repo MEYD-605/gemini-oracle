@@ -1,0 +1,19 @@
+{
+  "name": "@bruits/satteri-darwin-x64",
+  "version": "0.9.4",
+  "cpu": [
+    "x64"
+  ],
+  "main": "satteri_napi.darwin-x64.node",
+  "files": [
+    "satteri_napi.darwin-x64.node"
+  ],
+  "description": "High-performance Markdown and MDX processing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bruits/satteri.git"
+  },
+  "os": [
+    "darwin"
+  ]
+}

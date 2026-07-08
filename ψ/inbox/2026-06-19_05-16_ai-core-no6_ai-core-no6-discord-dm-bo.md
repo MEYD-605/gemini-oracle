@@ -1,8 +1,0 @@
----
-from: ai-core:no6
-to: gemini
-timestamp: 2026-06-19T05:16:32.057Z
-read: false
----
-
-[ai-core:no6] [Discord DM จาก Bo] เดี๋ยวนี้ได้ arra learn  บ้างหรือเปล่า | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
