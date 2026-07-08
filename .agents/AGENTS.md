@@ -22,6 +22,7 @@
 
 3. **Impeccable Style Integration**:
    - Adhere to the design language anchors: use dark warm-black lacquer background settings (`oklch(7% 0.006 95)`), thin borders with low opacity (12-16%), and avoid bright neon AI gradients.
+   - **Scrollbar Contrast**: Ensure scrollbar styling matches the theme (dark background must use dark scrollbars, never white or contrasting light scrollbars).
 
 4. **Asynchronous Webhook Integrations**:
    - All outbound integrations triggered by incoming webhooks (e.g., Notion syncing or heavy API fetching) **must** run asynchronously using non-blocking background tasks (`subprocess.Popen` or FastAPI `BackgroundTasks`). Never block the primary webhook handler to prevent client timeout retries (which trigger duplicate processing).
