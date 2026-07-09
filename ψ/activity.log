@@ -304,3 +304,10 @@
 2026-07-09 11:18 | idle | tested and verified 'maw no6 channels' audit outputs, executed 'maw no6 fonts install' to download IBM Plex Sans Thai Looped and Sarabun-Bold fonts, verified active green checks on remote server, and reported to Discord
 2026-07-09 11:28 | active | created new 'discord-channel' maw plugin with subcommands ('status', 'allow', 'deny', 'token'), integrated atomic JSON writing and pass-based vault backup, updated dispatcher routing
 2026-07-09 11:29 | idle | verified 'maw discord-channel' subcommands (status, allow, deny) execution on remote, successfully added/removed dummy user id in access.json, and reported status to Discord
+2026-07-09 12:28 | active | prepared concise blog post links and CLI check commands and reported to P'Nat in Discord
+2026-07-09 12:37 | idle | designed and built minimal-discord server based on fakechat architecture, wrote technical post 'minimal-discord-mcp-gateway.md', built and deployed online, and sent details to Discord
+2026-07-09 12:39 | idle | developed connectionless webhook_server.ts without discord.js dependency, wrote and published 'discord-webhook-mcp-gateway.md', and reported REST/HTTP setup details to Discord
+2026-07-09 12:42 | idle | integrated local MQTT Mosquitto broker client (mqtt_server.ts) on localhost:1883, wrote 'mqtt-mosquitto-mcp-gateway.md' blog, deployed online, and reported topic publish/subscribe details to Discord
+2026-07-09 13:16 | active | researched SIWE on MQTT stateless time-based verification and recovery using Viem, and reported code structure and architecture to Discord
+2026-07-09 14:45 | idle | conducted repository archaeology, retrieved remote subscriber.ts MQTT-to-Gemini bridge script in Sombo staging directory, verified TS child_process exec pattern, reported to Discord, and set state to dormant
+
