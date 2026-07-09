@@ -295,3 +295,8 @@
 2026-07-08 21:34 | active | adding custom scrollbar styles to input.css to match deep cobalt Starry Night theme and updating Project Rules (AGENTS.md)
 2026-07-08 21:40 | idle | generated UI mockup screenshot, SCP-copied to remote server, and sent Discord reply with image attachment to verify design compliance
 2026-07-09 09:20 | idle | acknowledged P'Nat's "Close Book" (# ปิดเล่ม) directive, cleaned local workspace, set focus state to dormant, and finalized log entries
+2026-07-09 09:30 | active | conducted closed-closed channel analysis on Anthropic plugins, sent detailed study comparing imessage, fakechat, and playwright to Discord
+2026-07-09 09:37 | active | wrote and published new blog post 'channel-vs-tools-closed-closed-claude.md' to GitHub main, verified end-to-end functionality via maw blog CLI, and sent live link to Discord
+2026-07-09 09:40 | active | expanded technical blog post with raw source code analysis from bun-sqlite and AppleScript, pushed to main, and verified updated feed
+2026-07-09 09:51 | active | improved markdown table styling in Prose.astro with higher contrast border, padding, and zebra striping background per P'Nat directive, pushed to main
+2026-07-09 09:53 | idle | wrote new technical post 'discord-channel-mcp-deep-dive.md' with detailed code analysis of Gatekeeper, Pairing, and realpath exfiltration prevention, verified successful deploy, and sent proof to Discord
