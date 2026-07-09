@@ -300,3 +300,5 @@
 2026-07-09 09:40 | active | expanded technical blog post with raw source code analysis from bun-sqlite and AppleScript, pushed to main, and verified updated feed
 2026-07-09 09:51 | active | improved markdown table styling in Prose.astro with higher contrast border, padding, and zebra striping background per P'Nat directive, pushed to main
 2026-07-09 09:53 | idle | wrote new technical post 'discord-channel-mcp-deep-dive.md' with detailed code analysis of Gatekeeper, Pairing, and realpath exfiltration prevention, verified successful deploy, and sent proof to Discord
+2026-07-09 11:16 | active | developed and deployed 2 new subcommands ('channels' and 'fonts') inside maw no6 custom plugin to inspect Closed-Closed channels and manage Typst Thai fonts, updated maw-dispatch.sh script
+2026-07-09 11:18 | idle | tested and verified 'maw no6 channels' audit outputs, executed 'maw no6 fonts install' to download IBM Plex Sans Thai Looped and Sarabun-Bold fonts, verified active green checks on remote server, and reported to Discord
