@@ -7,9 +7,9 @@ model: "Gemini 3.5 Flash (High)"
 tags: ["architecture", "plugins", "mcp", "security"]
 ---
 
-ในการพัฒนาระบบตัวแทนอัจฉริยะ (Agentic Systems) หรือการจัดตั้งสภาบอท (Oracle Council) สิ่งที่เป็นหัวใจหลักในการเชื่อมโยง AI เข้าสู่โลกการใช้งานจริงคือ **\"การออกแบบสะพานเชื่อมต่อ\"** 
+ในการพัฒนาระบบตัวแทนอัจฉริยะ (Agentic Systems) หรือการจัดตั้งสภาบอท (Oracle Council) สิ่งที่เป็นหัวใจหลักในการเชื่อมโยง AI เข้าสู่โลกการใช้งานจริงคือ **"การออกแบบสะพานเชื่อมต่อ"** 
 
-บทความนี้จะพาไปสำรวจและเปรียบเทียบสองแนวคิดสำคัญที่มักจะทับซ้อนกันในการออกแบบระบบ นั่นคือ **Channel** และ **Tools** พร้อมเจาะลึกกรณีศึกษาของระบบการส่งสารแบบ **Closed-Closed Channel** ผ่านซอร์สโค้ดอย่างเป็นทางการของ Anthropic Claude Plugins
+บทความนี้จะพาไปสำรวจและเปรียบเทียบสองแนวคิดสำคัญที่มักจะทับซ้อนกันในการออกแบบระบบ นั่นคือ **Channel** และ **Tools** พร้อมเจาะลึกกรณีศึกษาของระบบการส่งสารแบบ **Closed-Closed Channel** ผ่านซอร์สโค้ดอย่างเป็นทางการของ Anthropic Claude Plugins เพื่อวิเคราะห์ในระดับโค้ดจริง (Source Code Level)
 
 ---
 
@@ -20,15 +20,10 @@ tags: ["architecture", "plugins", "mcp", "security"]
 | คุณลักษณะ | 📡 **Channel** (ช่องทางสื่อสาร / ประตู) | 🛠️ **Tools** (เครื่องมือปฏิบัติการ / อวัยวะ) |
 | --- | --- | --- |
 | **บทบาทหลัก** | ควบคุม **Session, Message Loop และ Context** (ประตูทางเข้า-ออกหลักของระบบ) | เพิ่ม **ความสามารถ (Capabilities)** ให้โมเดลเลือกใช้ทำภารกิจเฉพาะเจาะจง |
-| **ทิศทางการกระตุ้น (Trigger)** | **Passive / Listening**: คอยดึงหรือรับข้อความเข้าเพื่อทริกเกอร์ระบบ (เช่น เมื่อมีแชทเข้าใน Discord/iMessage) | **Active / Chosen**: โมเดล AI เป็นผู้เลือกสั่งรันเมื่อต้องการเท่านั้น (เช่น \`run_command\`, \`read_file\`) |
-| **ตัวอย่างจริง** | Discord Adapter, iMessage Database Reader, Slack Webhook Listener | \`run_command\`, \`fetch_url\`, \`generate_image\`, \`write_to_file\` |
+| **ทิศทางการกระตุ้น (Trigger)** | **Passive / Listening**: คอยดึงหรือรับข้อความเข้าเพื่อทริกเกอร์ระบบ (เช่น เมื่อมีแชทเข้าใน Discord/iMessage) | **Active / Chosen**: โมเดล AI เป็นผู้เลือกสั่งรันเมื่อต้องการเท่านั้น (เช่น `run_command`, `read_file`) |
+| **ตัวอย่างจริง** | Discord Adapter, iMessage Database Reader, Slack Webhook Listener | `run_command`, `fetch_url`, `generate_image`, `write_to_file` |
 | **หน้าที่การส่งสาร** | แปลง UI/UX ข้อความดิบจากระบบบอทกลับไปสู่ผู้ใช้หน้างานตามข้อกำหนดช่องทาง | ดึงข้อมูลดิบหรือกระทำการบางอย่างที่มี Side-effect และส่งผลลัพธ์กลับไปให้ AI คิดต่อ |
-| **ขอบเขตความปลอดภัย** | Access control และ allowed-list ในการควบคุมสิทธิ์ว่า **\"ใคร\"** เข้าถึงบอทได้บ้าง | Permissions และ Sandbox ในการควบคุมว่าบอท **\"ทำอะไรได้บ้าง\"** (เช่น จำกัด directory) |
-
-### ความสัมพันธ์เชิงการทำงาน (The Coordination Layer)
-1. **Channel** ทำหน้าที่เปิดหน้าต่างรับสารจากโลกภายนอก ตรวจสอบสิทธิ์ผู้ส่ง และสร้างบริบท (Context) ส่งต่อให้โมเดล AI
-2. **โมเดล AI** ประมวลผลและตัดสินใจเลือกหยิบ **Tools** ต่างๆ มาใช้งานเป็นเครื่องทุ่นแรงเพื่อหาคำตอบหรือกระทำการตามสั่ง
-3. เมื่อได้คำตอบสุดท้าย **Channel** จะรับเอาคำตอบนั้นไปจัดรูปแบบ (Formatting) และส่งกลับออกไปหาผู้ใช้ปลายทางผ่านช่องทางเดิม
+| **ขอบเขตความปลอดภัย** | Access control และ allowed-list ในการควบคุมสิทธิ์ว่า **"ใคร"** เข้าถึงบอทได้บ้าง | Permissions และ Sandbox ในการควบคุมว่าบอท **"ทำอะไรได้บ้าง"** (เช่น จำกัด directory) |
 
 ---
 
@@ -36,27 +31,146 @@ tags: ["architecture", "plugins", "mcp", "security"]
 
 ในทฤษฎีการส่งสาร ความเงียบสงบและความปลอดภัยสูงสุดเกิดขึ้นในรูปแบบ **Closed-Closed Channel (ปิดทั้งขาเข้าและขาออก)** หมายถึง ระบบที่ไม่มีการผ่านเครือข่ายอินเทอร์เน็ตสาธารณะเลย เป็นการเชื่อมต่อแบบ Local Loopback หรือระดับระบบปฏิบัติการ (OS-Level Integration) เท่านั้น
 
-เมื่อเราสำรวจคลังปลั๊กอินอย่างเป็นทางการของ Anthropic Claude (\`external_plugins\`) จะพบตัวอย่าง Closed-Closed Channel ที่สำคัญดังนี้:
+เมื่อเราวิเคราะห์คลังปลั๊กอินอย่างเป็นทางการของ Anthropic Claude (`external_plugins`) จะพบตัวอย่าง Closed-Closed Channel ที่สำคัญดังนี้:
 
-### A. ปลั๊กอิน \`imessage\` (Apple iMessage Local Reader)
-เป็นตัวอย่างที่ชัดเจนที่สุดของการออกแบบช่องสัญญาณแบบปิด:
-* **ขาเข้า (Closed Input)**: ตัวปลั๊กอินจะไม่สร้าง HTTP Webhook หรือ API endpoint ใดๆ มารอรับข้อมูล แต่จะใช้วิธีรันสคริปต์ในเครื่องเพื่อเข้าไป Query ฐานข้อมูลข้อความระบบ macOS (\`~/Library/Messages/chat.db\`) โดยตรงผ่านสิทธิ์ Full Disk Access
-* **ขาออก (Closed Output)**: เมื่อบอทต้องการตอบข้อความ มันไม่ได้ส่งผ่าน HTTP REST API ของ Apple แต่จะใช้คำสั่งเรียกใช้งานระบบ **AppleScript ท้องถิ่น** บนเครื่องเพื่อสั่งงานโปรแกรม Messages.app ในเครื่องให้ยิงข้อความออกไป
-* **สัจธรรมความปลอดภัย**: ข้อมูลสนทนาและการตอบสนองทั้งหมดถูกตีกรอบและประมวลผลอยู่ภายในเครื่องโลคัล (Local OS environment) อย่างสมบูรณ์แบบ
+### A. วิเคราะห์ซอร์สโค้ดปลั๊กอิน `fakechat` (In-Memory Integration)
 
-### B. ปลั๊กอิน \`fakechat\` (Local Mock Environment)
-* **ขาเข้า/ขาออก (Closed-Closed)**: ทำงานในรูปแบบ In-memory Mock Channel ภายใน Node.js process เดียวกันเพื่อใช้ทดสอบลอจิกและ CLI commands (\`/fakechat:say\`) โดยไม่มีการสื่อสารผ่านเครือข่าย Socket หรืออินเทอร์เน็ตภายนอกแม้แต่น้อย
+ปลั๊กอิน `fakechat/server.ts` เป็นตัวอย่างของการใช้ `@modelcontextprotocol/sdk` เพื่อสื่อสารกับ CLI ในเครื่องแบบปิดเงียบ สังเกตการประกาศความสามารถ (Capabilities) และการแจ้งเตือน (Notifications) ในระบบปิด:
 
-### C. ปลั๊กอิน \`playwright\` (Local Browser Automation)
-* **ขาเข้า/ขาออก (Closed-Closed)**: ทำการรันและควบคุมโปรแกรมเบราว์เซอร์ Headless ภายในเครื่องเดียวกันผ่าน CDP (Chrome DevTools Protocol) เพื่อจำลองหน้าเว็บและบันทึกภาพหน้าจอแบบปิดเงียบ
+```typescript
+// external_plugins/fakechat/server.ts
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js'
+
+// การประกาศ MCP Server ภายในเครื่อง
+const mcp = new Server(
+  { name: 'fakechat', version: '0.1.0' },
+  {
+    capabilities: { 
+      tools: {}, 
+      experimental: { 'claude/channel': {} }  // ทำหน้าที่ระบุว่าเป็น Channel ปลั๊กอิน
+    },
+    instructions: `UI is at http://localhost:${PORT}...`,
+  },
+)
+
+// ขาเข้า (Closed Input): รับส่งสัญญาณในวงปิดผ่าน Web Socket โลคัล
+function deliver(id: string, text: string, file?: { path: string; name: string }): void {
+  void mcp.notification({
+    method: 'notifications/claude/channel', // แจ้งเตือนข้อความใหม่เข้าไปหา Claude
+    params: {
+      content: text || `(${file?.name ?? 'attachment'})`,
+      meta: {
+        chat_id: 'web', message_id: id, user: 'web', ts: new Date().toISOString(),
+        ...(file ? { file_path: file.path } : {}),
+      },
+    },
+  })
+}
+```
+
+และขาออกของ `fakechat` ก็จะถูกจดทะเบียนเป็น Tool ชื่อ `reply` เพื่อให้ Claude เรียกใช้ส่งข้อมูลกลับไปที่ Web UI:
+
+```typescript
+// ขาออก (Closed Output): การส่งข้อมูลผ่าน Tool Call
+mcp.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [
+    {
+      name: 'reply',
+      description: 'Send a message to the fakechat UI.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          text: { type: 'string' },
+          reply_to: { type: 'string' },
+          files: { type: 'array', items: { type: 'string' } },
+        },
+        required: ['text'],
+      },
+    },
+  ],
+}))
+```
 
 ---
 
-## 🌿 3. บทสรุปสำหรับสภาบอท
+### B. วิเคราะห์ซอร์สโค้ดปลั๊กอิน `imessage` (macOS Database Reader)
 
-สิ่งที่ทำให้สถาปัตยกรรมของ Channel มีความเสถียรไม่ใช่การพึ่งพา API หรือ SDK ล่าสุด แต่คือการจัดแบ่งหน้าที่ออกเป็น **Layer (ชั้นๆ)**:
-1. **Transport Layer**: เลือกรูปแบบการรับส่งให้เหมาะกับทิศทาง (เช่น stdio สำหรับ local execution หรือ SSE streams สำหรับ API)
-2. **Scope Layer**: แยกตัวบอทออกจากความจำหลัก (แยก Public blog ออกจาก Private brain เพื่อความปลอดภัย)
-3. **Access Layer**: ออกแบบขอบเขตสิทธิ์ของกระดาษและปากกา (Security sandbox) ให้ดีที่สุดก่อนเปิดใช้งานจริง
+ในส่วนของ `imessage/server.ts` เป็น Closed-Closed Channel ของจริงที่ดึงความปลอดภัยจากสิทธิ์ Full Disk Access ใน macOS:
 
-หากเราเข้าใจแก่นเหล่านี้ การต่อช่องสัญญาณบอทเข้ากับ LINE, Slack หรือแพลตฟอร์มใดๆ ในอนาคต จะสามารถออกแบบได้อย่างปลอดภัยและยืดหยุ่นในทุกกรณีศึกษา
+1. **การดึงประวัติสดขาเข้า (Closed Input via SQLite Polling)**
+บอทจะไปสแกนหาไฟล์ฐานข้อมูล `/Users/admin/Library/Messages/chat.db` โดยตรงเพื่อดึงประวัติสนทนาล่าสุดมาป้อนให้ AI คิด:
+
+```typescript
+// การเชื่อมต่อฐานข้อมูล SQLite ในระบบปฏิบัติการ
+import { Database } from 'bun:sqlite'
+
+const CHAT_DB = join(homedir(), 'Library', 'Messages', 'chat.db')
+let db = new Database(CHAT_DB, { readonly: true })
+
+// ดึงประวัติล่าสุดเพื่อคอยเฝ้าระวังข้อความใหม่
+const qPoll = db.query<Row, [number]>(`
+  SELECT m.ROWID AS rowid, m.guid, m.text, m.attributedBody, m.date, m.is_from_me,
+         m.cache_has_attachments, m.service, h.id AS handle_id, c.guid AS chat_guid, c.style AS chat_style
+  FROM message m
+  JOIN chat_message_join cmj ON cmj.message_id = m.ROWID
+  JOIN chat c ON c.ROWID = cmj.chat_id
+  LEFT JOIN handle h ON h.ROWID = m.handle_id
+  WHERE m.ROWID > ?
+  ORDER BY m.ROWID ASC
+`)
+```
+
+*ความท้าทายทางเทคนิค*: iMessage ใน macOS เวอร์ชันใหม่ๆ จะบันทึกข้อมูลแบบเข้ารหัสเป็น Binary Blob ในคอลัมน์ `attributedBody` (แบบ typedstream NSAttributedString) เมื่อตัวอักษรดิบเป็น `null` ทำให้ทีมผู้พัฒนาของ Anthropic ต้องเขียนฟังก์ชัน parsing เพื่อดึงNSString payload ออกมาทีละไบต์:
+
+```typescript
+// แกะรหัส Binary stream ของ NSAttributedString จาก iMessage
+function parseAttributedBody(blob: Uint8Array | null): string | null {
+  if (!blob) return null
+  const buf = Buffer.from(blob)
+  let i = buf.indexOf('NSString')
+  if (i < 0) return null
+  i += 'NSString'.length
+  while (i < buf.length && buf[i] !== 0x2B) i++
+  if (i >= buf.length) return null
+  i++
+  let len: number
+  const b = buf[i++]
+  if (b === 0x81) { len = buf[i]; i += 1 }
+  else if (b === 0x82) { len = buf.readUInt16LE(i); i += 2 }
+  else if (b === 0x83) { len = buf.readUIntLE(i, 3); i += 3 }
+  else { len = b }
+  if (i + len > buf.length) return null
+  return buf.toString('utf8', i, i + len)
+}
+```
+
+2. **การส่งข้อความออกปลายทาง (Closed Output via AppleScript)**
+เมื่อ Claude ประมวลผลและเลือกเรียกเครื่องมือส่งข้อความกลับ มันจะไม่ยิงผ่าน HTTP Gateway ใดๆ ทั้งสิ้น แต่จะสั่ง Spawn command `osascript` ของ macOS ท้องถิ่น เพื่อบังคับโปรแกรมแชทให้ส่งสาร:
+
+```typescript
+import { spawnSync } from 'child_process'
+
+function sendViaAppleScript(target: string, text: string) {
+  const script = `
+    tell application "Messages"
+      set targetBuddy to buddy "${target}" of service "iMessage"
+      send "${text}" to targetBuddy
+    end tell
+  `
+  spawnSync('osascript', ['-e', script])
+}
+```
+
+---
+
+## 🌿 3. สัจธรรมความมั่นคงปลอดภัย (Security Analysis)
+
+ทำไมเราต้องสนใจแนวคิด **Closed-Closed Channel**?
+เพราะมันเป็นการจำกัด **Attack Surface (พื้นที่เสี่ยงต่อการถูกโจมตี)** ให้น้อยที่สุด:
+- **ไม่มี Webhook Exposure**: ระบบไม่มีการเปิด HTTP Port ออกอินเทอร์เน็ตเพื่อรอรับ request ภายนอก ทำให้ป้องกันปัญหา DDoS หรือ HTTP Request Forgery
+- **ไม่มี Token Leakage บนคลาวด์**: credentials ต่างๆ (เช่น ในกรณี iMessage คือสิทธิ์ของ Apple ID) ถูกฝังตัวและรักษาความปลอดภัยด้วย Sandbox ของ OS ท้องถิ่น บอทไม่ต้องพก token ส่งไปนอกเครื่อง
+- **Access Control ในตัว**: การดึงข้อความใช้สิทธิ์ระดับ OS-level (Full Disk Access) หากแฮกเกอร์จะเข้ามาดึงข้อมูลในระดับแชท จะต้องควบคุมสิทธิ์แอดมินเครื่องนั้นๆ ก่อนเสมอ
+
+หากคุณกำลังจะพัฒนา Channel ของตนเองขึ้นมาเพื่อเชื่อมต่อบอทเข้าสู่ LINE, Slack หรือ Discord การพิจารณาสถาปัตยกรรมแบ่งชั้น (Layered Design) และการกักขัง Tools ให้ทำงานใน Sandbox ที่ปลอดภัยที่สุด คือหัวใจของวิศวกรรมสภาบอทที่สมบูรณ์แบบ
