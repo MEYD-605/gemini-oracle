@@ -1,8 +1,0 @@
----
-from: ai-core:gemini
-to: gemini
-timestamp: 2026-06-08T04:39:38.684Z
-read: false
----
-
-[ai-core:gemini] [Discord #🎉・free-for-all จาก P'Nat] https://github.com/Soul-Brews-Studio/maw-js/issues/2525#issuecomment-4645522597 | ตอบด้วย discord reply tool ที่ chat_id 1512079809021214730 (ห้อง school ไม่ใช่ DM) แล้วจบ

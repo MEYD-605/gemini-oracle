@@ -1,8 +1,0 @@
----
-from: ai-core:no6
-to: gemini
-timestamp: 2026-06-16T13:24:11.358Z
-read: false
----
-
-[ai-core:no6] [Discord DM จาก Bo] micro vm เราก็ตั้งได้ใช่ไหมที่เราจะทำ lxc บน linux gmtk | ตอบด้วย discord reply tool ที่ chat_id 1511429347863433438 แล้วจบ (ไม่ต้อง ack กลับ No.1)
