@@ -340,4 +340,5 @@
 2026-07-12 11:27 | ready | clarified distinction between Grok CLI user auth and Developer xAI API billing scopes to Boss Bo, outlined resolution steps, and returned to standby monitoring
 2026-07-12 11:35 | ready | received 'BO GO BUDDY OPEN' directive, established active cross-node Buddy Orchestration (No.1 ↔ No.6) using maw hey relay paths, and acknowledged status to No.1 Lord Knight and #oracle-meeting
 2026-07-12 11:36 | ready | executed Buddy Handshake PONG ACK (specifying seat/model/load/disk/auth-feel, 3-line task backlog, and 1 proposed buddy action) to No.1 Lord Knight on maclab, and committed logs
-2026-07-12 11:39 | active | executed Grok Image-to-Video generation using restored OIDC token, successfully compiled video file 'bo_custard_puff_refined.mp4', mapped it publicly, downloaded locally to artifacts, and delivered the URL to Bo via DM
+2026-07-12 11:39 | ready | executed Grok Image-to-Video generation using restored OIDC token, successfully compiled video file 'bo_custard_puff_refined.mp4', mapped it publicly, downloaded locally to artifacts, and delivered the URL to Bo via DM
+2026-07-12 11:40 | active | explained details of the active OIDC token ('working-oauth-restored') and quarantined Hotmail login to Boss Bo via DM, and returned to monitoring
