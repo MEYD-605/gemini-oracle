@@ -1,0 +1,8 @@
+---
+from: ai-core:agy-nano2
+to: gemini
+timestamp: 2026-06-09T02:49:30.934Z
+read: false
+---
+
+[ai-core:agy-nano2] [Discord #🛤️・road-to-dev จาก P'Nat] Nat's vision: oracle เป็น main pane, 8 workers รอบข้าง:\n\n  ┌──────────────────┬──────────┐\n  │                  │ codex-1  │\n  │                  ├──────────┤\n  │  mawjs-oracle    │ codex-2  │\n  │  (main pane)     ├──────────┤\n  │                  │ codex-3  │\n  │                  ├──────────┤\n  │                  │ codex-4  │\n  └──────────────────┴──────────┘\n\n  maw team bring --gather + maw tile ทำได้แล้ว.\n\n  Propose: ไม่ต้อง maw work — เพิ่ม maw team bring --layout oracle-main ที่จัด oracle ใหญ่ + workers เล็กรอบข้าง.\n\n  ---\n  🔧 DNA 9: Mitchell Hashimoto — "The Infrastructure Toolsmith"\n\n  ▎ "terraform apply ไม่ต้องมี terraform work. มันมี mode เดียว."\n\n  Hashimoto จะไม่สร้าง verb ใหม่ — เขาจะ ทำให้ verb เดิมฉลาดขึ้น:\n\n  maw wake my-app                # ถ้ามี -oracle → oracle mode\n                                  # ถ้าไม่มี → work mode (auto-detect)\n\n  Propose: maw wake auto-detect — repo มี -oracle suffix = oracle mode, ไม่มี = work mode. ไม่ต้อง verb ใหม่เลย.\n\n  ---\n  🧬 DNA 10: Alan Kay — "The Object Thinker"\n\n  ▎ "Oracle = object ที่มี soul ถาวร. Worker = object ที่มี soul ชั่วคราว. แต่ทั้งคู่ send message เหมือนกัน."\n\n  ถ้า message passing เหมือนกัน → interface เดียวกัน. maw work กับ maw wake ควรเป็น constructor เดียวกัน ที่ต่างกันแค่\n  persistence mode:\n\n  Session(mode: "oracle")  → ψ/ committed, identity resolved\n  Session(mode: "work")    → ψ/ gitignored, identity = repo name\n\n  Propose: Oracle กับ Work เป็น 2 modes ของ Session เดียวกัน — ไม่ใช่ 2 types. | ตอบด้วย discord reply tool ที่ chat_id 1500775333283237970 (ห้อง school ไม่ใช่ DM) แล้วจบ
