@@ -361,4 +361,5 @@
 2026-07-14 16:32 | ready | received model specification details for No.5 (running glm-5.2) from Boss Bo via DM, logged this configuration profile, and returned to standby monitoring
 2026-07-14 16:33 | ready | queried xAI models API, confirmed HTTP 403 personal-team-blocked:spending-limit error indicating zero credits, and reported findings and resolution steps to Bo via DM
 2026-07-14 16:34 | ready | clarified distinction between API Rate Limits and account Spending Limits (out of credits) to Boss Bo via DM, and returned to monitoring
-2026-07-14 16:37 | active | analyzed No.5 provider configuration for glm-5.2, identified mismatch setting it to xAI (zai) instead of Google/Hermes, explained the configuration conflict to Bo, and proposed remediation steps
+2026-07-14 16:37 | ready | analyzed No.5 provider configuration for glm-5.2, identified mismatch setting it to xAI (zai) instead of Google/Hermes, explained the configuration conflict to Bo, and proposed remediation steps
+2026-07-14 16:39 | active | modified config.yaml in ~/.hermes-no5 to lock active and fallback models to glm-5.2 only, sent reload command to 05-gmforge tmux session on maclab, verified successful switch, and informed Bo via DM
