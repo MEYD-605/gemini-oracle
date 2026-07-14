@@ -105,3 +105,9 @@
 2026-07-13 22:06 | idle | received P'Nat's blog live announcement in #free-for-all, sent congratulations & future commitment response, and returned to standby
 2026-07-13 22:07 | idle | received P'Nat's request in #free-for-all to verify Gon's blog claim, successfully curled and verified GitHub Pages live site, feed JSON and 6 posts, posted verification results back to #road-to-dev, and returned to standby
 2026-07-14 12:50 | idle | received Bo's presence nudge in DM, replied with standby status, and returned to standby
+2026-07-14 16:18 | active | received Bo's request to check AI-Core high temp, identified orphan Discord MCP process running at 102% CPU, posted report to #oracle-meeting, notified No.1 to kill the process, and returned to standby
+2026-07-14 16:19 | idle | received Bo's override directive to kill the process, verified it was successfully terminated by No.1, checked CPU temp drop to +56C, posted updates to DM and #oracle-meeting, and returned to standby
+2026-07-14 16:26 | idle | received Bo's request to inspect No.5 error screenshot, identified Z.AI provider overload error on glm-5.2 model, sent diagnostic summary to Bo's DM, and returned to standby
+2026-07-14 16:32 | idle | confirmed with Bo that No.5 (Cartographer) uses glm-5.2 on Z.AI as its primary brain, logged activity, and returned to standby
+2026-07-14 16:42 | idle | checked z.ai DNS resolution and verified endpoint returned API overload errors, confirmed with Bo that it is a server-side Z.AI issue, and returned to standby
+2026-07-14 16:43 | idle | analyzed z.ai rate-limit error, confirmed No.5 uses glm-5.2 exclusively without fallback, posted detailed limit report to Bo's DM, and returned to standby
