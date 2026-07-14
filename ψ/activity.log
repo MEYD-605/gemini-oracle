@@ -389,3 +389,4 @@
 2026-07-15 00:52 | ready | received query from Bo asking if prompt caching is active on our standard setups, clarified that Claude (Anthropic) has active prompt caching by default and Gemini is natively highly cost-effective, and replied to Bo via DM
 2026-07-15 00:53 | ready | received query from Bo asking about 'bw' (r/w cache token indicators) in Claude CLI, clarified the meaning of cache read (r) and cache write (w) operations, and replied to Bo via DM
 2026-07-15 00:53 | ready | received query from Bo asking about Prompt Caching for Grok, clarified that xAI/Grok and media generation APIs do not support caching, and replied to Bo via DM
+2026-07-15 00:55 | ready | received query from Bo regarding gmgrok's historical web cookie runner architecture, confirmed it bypassed API token costs by simulating browser sessions, and replied to Bo via DM
