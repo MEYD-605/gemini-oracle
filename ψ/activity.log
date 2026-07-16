@@ -131,3 +131,10 @@
 2026-07-14 23:35 | idle | received Bo's note about Neo/P'Nat hosting status, audited Tailscale and ping status of oracle-world.wg node, confirmed P'Nat's machine is offline, explained how our local xAI token keeper preserves the premium grok CLI credentials independently, posted explanation to Bo's DM, logged activity, and returned to standby
 2026-07-14 23:35 | idle | received Bo's note clarifying that Neo is P'Nat's agent (neo-oracle), recalled neo-oracle's identity as the sysadmin agent on oracle-world.wg, explained its role and codebase paths to Bo, posted details to Bo's DM, logged activity, and returned to standby
 2026-07-14 23:47 | idle | audited P'Nat's active agent sessions on natz-ai-01, mapped agy CLI v1.1.2 plugins and version history, checked out latest arra-oracle-v3 upstream/alpha updates (new oracle-dig plugin and tools), updated focus.md, and returned to standby
+2026-07-16 20:44 | active | exploring claude-code codebase and drafting 2044_QUICK-REFERENCE.md
+2026-07-16 20:46 | idle | completed exploring claude-code codebase and wrote 2044_QUICK-REFERENCE.md
+2026-07-16 20:44 | active | exploring claude-code origin, preparing snippets analysis under /root/Code/github.com/MEYD-605/gemini-oracle/ψ/learn/claude-code-best/claude-code/2026-07-16/2044_CODE-SNIPPETS.md
+2026-07-16 20:44 | active | exploring claude-code tests under origin/ to analyze structure, utilities, mocking, and coverage for 2044_TESTING.md
+2026-07-16 20:46 | idle | completed analyzing claude-code tests (structure, helpers, mocking, coverage) and wrote 2044_TESTING.md
+2026-07-16 20:46 | idle | completed analyzing claude-code entry points, core execution loops, concurrency mechanisms, and error handling patterns, and wrote 2044_CODE-SNIPPETS.md
+2026-07-16 20:48 | idle | completed exploring claude-code API surface, hooks, integrations, and plugins, wrote 2044_API-SURFACE.md, and returned to standby
