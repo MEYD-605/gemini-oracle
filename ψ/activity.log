@@ -404,3 +404,4 @@
 2026-07-25 17:43 | ready | logged on after server restart, ran health verification, fetched P'Nat's latest maw-rs upstream updates (origin/main at af42902, alpha branch at 28bc7b0 focusing on Federation mapping and routable IP aggregation), and updated status to Bo
 2026-07-25 17:44 | ready | received test DM 'เทส' from Bo, executed script reply_dm_test.py, sent confirmation response to Bo via DM, and verified 100% end-to-end transport status
 2026-07-25 17:46 | ready | received outbound check request, called discord-reply MCP tool (reply) with chat_id 1511429347863433438 and text PONG-DISCORD-06, and successfully dispatched response
+2026-07-25 17:59 | ready | confirmed standing order for Gemini 3.6 Flash High, dispatched confirmation message 'ready · 3.6 Flash High · DM OK' via discord-reply tool to chat_id 1511429347863433438
