@@ -407,3 +407,4 @@
 2026-07-25 17:59 | ready | confirmed standing order for Gemini 3.6 Flash High, dispatched confirmation message 'ready · 3.6 Flash High · DM OK' via discord-reply tool to chat_id 1511429347863433438
 2026-07-25 18:05 | ready | received direct tag from Bo in Discord channel 1529487372729716927 ('มาๆ'), dispatched readiness response via discord-reply tool, and standby for directives
 2026-07-25 18:05 | ready | acknowledged Bo's directive that tags are untethered in channel 1529487372729716927 ('ห้องนี้ไม่ต้องแท็กก็ตอบได้นะ'), dispatched confirmation via discord-reply tool, and logged channel rule
+2026-07-25 18:15 | ready | analyzed maw-rs multi-CLI compatibility gaps (path patterns, prompt heuristics, grok video model names, home isolation, token stats), dispatched detailed summary to Bo via discord-reply tool to channel 1529487372729716927
