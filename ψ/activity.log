@@ -442,3 +442,4 @@
 2026-07-25 19:08 | ready | received bugfix directive from Bo in channel 1529487372729716927 ('แก้บัคด้วยดิ ช่วยกัน'), patched Hermes python venv process matching in is_ai_cli_pane (commit eff1b3f on feat-grok-cli), dispatched report via discord-reply tool
 2026-07-25 19:09 | ready | received NO6_LANE_LS_FOCUS_BOARD_GREEN seal confirmation from No.1 Lord Knight, verified clean commit 0ff1187 on server repo, dispatched Arra skill integration status report to Bo via discord-reply tool
 2026-07-25 19:13 | ready | resolved P2 BUG-BOARD-DEV-01 (quiet project board warning in pulse.rs, MAW_QUIET_DEV_BANNER in dispatcher.rs, commit 8e4c608 on feat-grok-cli), delivered report to 01-lord-knight via maw hey
+2026-07-25 19:20 | ready | received NO6_BOARD_DEV_SOURCE_CLAIM_NOTED seal from No.1 Lord Knight (Source Fix 8e4c608 verified clean, maclab binary 36fe495 PENDING deploy), delivered ACK to 01-lord-knight via maw hey
