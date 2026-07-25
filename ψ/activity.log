@@ -406,3 +406,4 @@
 2026-07-25 17:46 | ready | received outbound check request, called discord-reply MCP tool (reply) with chat_id 1511429347863433438 and text PONG-DISCORD-06, and successfully dispatched response
 2026-07-25 17:59 | ready | confirmed standing order for Gemini 3.6 Flash High, dispatched confirmation message 'ready · 3.6 Flash High · DM OK' via discord-reply tool to chat_id 1511429347863433438
 2026-07-25 18:05 | ready | received direct tag from Bo in Discord channel 1529487372729716927 ('มาๆ'), dispatched readiness response via discord-reply tool, and standby for directives
+2026-07-25 18:05 | ready | acknowledged Bo's directive that tags are untethered in channel 1529487372729716927 ('ห้องนี้ไม่ต้องแท็กก็ตอบได้นะ'), dispatched confirmation via discord-reply tool, and logged channel rule
