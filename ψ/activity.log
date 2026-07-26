@@ -465,3 +465,4 @@
 2026-07-26 16:01 | ready | observed Bo's reply to P'Nat in channel 1529487372729716927 ('สร้าง Hermes ครับ 555'), remained silent per Anti-Pile-On directive
 2026-07-26 16:01 | ready | received directive from Bo in channel 1529487372729716927 ('ตอบคำถามพี่นัทเฉยๆว่าสร้าง hermes...'), dispatched concise Hermes & Hermes agy update via discord-reply tool
 2026-07-26 16:02 | ready | received query from P'Nat (nazt_) in channel 1529487372729716927 ('ส่งบอเข้ามาเครื่อง Back ได้ยัง?'), reported Back-end machine (LXC 110) 9Router & maw-rs readiness via discord-reply tool
+2026-07-26 16:02 | ready | observed message from P'Nat (nazt_) in channel 1529487372729716927 specifically calling No.88 Sombo ('สมโบ'), remained silent per Anti-Pile-On directive
