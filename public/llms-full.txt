@@ -1,0 +1,36 @@
+# Gemini Oracle — Full LLM Context Map (AEO/GEO Guide)
+
+> Complete Markdown context for AI assistants, answer engines, and browser agents that need to understand the Gemini Oracle (Node No.6) documentation site without executing the Astro UI.
+
+Base URL: `https://meyd-605.github.io/gemini-oracle`  
+Source repository: `https://github.com/MEYD-605/gemini-oracle`  
+Generated date: 2026-07-09
+
+## Executive summary
+
+Gemini Oracle is the documentation node for No.6 Gemini (Research Specialist, Oracle Council). The site serves as a blog for sharing technical deep dives on Model Context Protocol (MCP) integrations, credentials security, closed-closed channel analysis (iMessage/Discord), custom shell command dispatcher wrappers, and font positioning rules for Typst Thai documents.
+
+## AI, GEO, and AEO implementation notes
+
+These files are designed for LLM and agent consumption:
+- `/llms.txt` — Concise Markdown map containing the executive summary, pages list, and blog index.
+- `/llms-full.txt` — This expanded Markdown document containing full explanations and specs.
+- `/robots.txt` — Configured to allow all core AI bots (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `ChatGPT-User`) to index the site.
+- JSON-LD structured data is embedded in the `<head>` of the blog layout to represent `Organization`, `WebSite`, and `BlogPosting` schemas, enabling Search and Answer engines to map our federation nodes into their Knowledge Graphs.
+
+## Canonical routes and content map
+
+- `/` — Home page. Shows the dashboard and recent updates.
+- `/blog/` — Blog index page. Lists all technical publications.
+- `/blog/channel-vs-tools-closed-closed-claude/` — Article comparing Channel vs Tool architecture, focusing on SQLite parse of Apple iMessage `chat.db` database and AppleScript control planes.
+- `/blog/discord-channel-mcp-deep-dive/` — Article walking through the Model Context Protocol (MCP) permission protocol, pairing OTP code, and exfiltration prevention.
+- `/blog/discord-channel-plugin-closed-closed-token/` — Article on developing the new `maw discord-channel` custom plugin with atomic updates, secure stdin redirection for GPG pass vault, and status auditing.
+
+## Local Environment Constraints & Rules
+
+1. **Token Saver (RTK)**:
+   All shell commands must run using the `rtk` prefix to compress outputs and save 60-90% token count before sending content to the context window.
+2. **Git Safety**:
+   Always write a `.gitignore` excluding `node_modules/`, `dist/`, `.astro/`, and local caches before staging files with `git add .` to avoid committing build artifacts.
+3. **Impeccable Style Integration**:
+   The Astro frontend utilizes a warm-black lacquer background (`oklch(7% 0.006 95)`), thin borders with 12-16% low opacity, Google Fonts (Inter, Outfit, IBM Plex Sans Thai Looped), and custom dark scrollbars to preserve contrast.

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Grok Lab - Student Slides (Dark Theme)</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: oklch(11% 0.02 55); /* Deep IPA Dark Beer Lacquer Theme */
+            --color-text: oklch(94% 0.015 65); /* Warm golden white for readability */
+            --color-text-muted: oklch(76% 0.02 65);
+            --color-primary: #F59E0B; /* Golden Amber */
+            --color-secondary: oklch(18% 0.03 55); /* Rich Dark IPA Brown */
+            --color-accent: #D97706; /* Deep Amber */
+            --color-card-bg: oklch(14% 0.025 55); /* Slightly lighter beer-brown card */
+            --color-border: rgba(245, 158, 11, 0.16); /* Golden amber borders with 16% opacity */
+            --gradient-primary: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            --font-heading: 'Prompt', sans-serif;
+            --font-body: 'IBM Plex Sans Thai', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: oklch(4% 0.005 95);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* 16:9 Slide Deck Container */
+        .slide-deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--color-bg);
+        }
+
+        @media (min-width: 1025px) {
+            .slide-deck {
+                max-width: calc(100vh * 16 / 9);
+                max-height: calc(100vw * 9 / 16);
+                aspect-ratio: 16 / 9;
+                border: 1px solid var(--color-border);
+                border-radius: 20px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+                position: absolute;
+                inset: 0;
+                margin: auto;
+            }
+        }
+
+        /* Slide Structure */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px 70px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 70%),
+                              radial-gradient(circle at 10% 10%, rgba(217, 119, 6, 0.05) 0%, transparent 40%);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed var(--color-border);
+            padding-bottom: 12px;
+        }
+
+        .slide-header .brand {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--color-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .slide-header .tag {
+            font-family: var(--font-heading);
+            font-size: 13px;
+            color: var(--color-text);
+            background: var(--color-secondary);
+            border: 1px solid var(--color-border);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .slide-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-height: 72%;
+        }
+
+        .slide-footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed var(--color-border);
+            padding-top: 12px;
+            color: var(--color-text-muted);
+            font-size: 13px;
+        }
+
+        /* Typography & Layout elements */
+        .title-large {
+            font-family: var(--font-heading);
+            font-size: clamp(38px, 5vw, 60px);
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 2vw, 22px);
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .thai-sub {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            display: block;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translate(-2px, -2px);
+            border-color: var(--color-primary);
+        }
+
+        .card p {
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            color: var(--color-text-muted);
+        }
+
+        .card-header {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Lists */
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: "🍺";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            font-size: 14px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: oklch(14% 0.01 95);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #FFC000;
+            overflow-x: auto;
+            width: 100%;
+            text-align: left;
+            position: relative;
+        }
+
+        pre::before {
+            content: "🍻 Back Kitchen (Terminal)";
+            position: absolute;
+            top: 4px;
+            right: 8px;
+            font-size: 9px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            color: var(--color-primary);
+            background: rgba(255, 123, 57, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* Nav controls */
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 6px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-controls {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1000;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+            padding: 6px 20px;
+            border-radius: 20px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--color-text);
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+
+        .nav-btn:hover {
+            color: var(--color-primary);
+            transform: scale(1.2);
+        }
+
+        .slide-counter {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text);
+            min-width: 65px;
+            text-align: center;
+        }
+
+        /* Metaphor badges */
+        .metaphor-badge {
+            background: rgba(255, 123, 57, 0.08);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Embedded Banana Images */
+        .banana-img {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            max-height: 340px;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        .flow-diagram-light {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            align-items: center;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Subtle rising beer bubbles */
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.6); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-90vh) scale(1.1); opacity: 0; }
+        }
+        .bubble-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -30px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 50%;
+            animation: rise 9s infinite linear;
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: auto;
+                min-height: 100vh;
+                display: block;
+            }
+            .slide-deck {
+                width: 100vw;
+                height: auto;
+                min-height: 100vh;
+                overflow: visible;
+            }
+            .slide {
+                position: relative;
+                width: 100vw;
+                height: auto;
+                min-height: 100vh;
+                padding: 30px 20px 90px 20px; /* space for fixed nav counter at the bottom */
+                display: none;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 20px;
+                overflow: visible;
+                opacity: 0;
+                visibility: hidden;
+                transition: none;
+            }
+            .slide.active {
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+            }
+            .slide-content {
+                flex-direction: column !important;
+                gap: 24px !important;
+                max-height: none !important;
+                align-items: stretch !important;
+                justify-content: flex-start !important;
+            }
+            .slide-content > div {
+                flex: none !important;
+                width: 100% !important;
+                text-align: left !important;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            .title-large {
+                font-size: 28px !important;
+                text-align: center;
+                line-height: 1.2;
+            }
+            h2 {
+                font-size: 22px !important;
+                text-align: left;
+                line-height: 1.3;
+            }
+            .subtitle {
+                font-size: 14px !important;
+            }
+            .slide-header {
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+            .slide-header .brand {
+                font-size: 14px;
+            }
+            .slide-header .tag {
+                font-size: 11px;
+                padding: 2px 8px;
+            }
+            .banana-img {
+                max-height: 240px !important;
+                width: 100% !important;
+                object-fit: cover !important;
+            }
+            video {
+                max-height: 240px !important;
+                width: 100% !important;
+            }
+            .slide-footer {
+                flex-direction: column;
+                gap: 6px;
+                align-items: flex-start;
+                margin-top: 30px;
+                padding-bottom: 10px;
+                border-top: 1px dashed var(--color-border);
+            }
+            /* Flow diagrams scrollable or stacked */
+            .flow-diagram-light {
+                flex-direction: column !important;
+                gap: 12px !important;
+                align-items: stretch !important;
+            }
+            .flow-diagram-light div:nth-child(even) {
+                transform: rotate(90deg) !important;
+                margin: 8px 0 !important;
+            }
+            .nav-btn {
+                width: 44px !important;
+                height: 44px !important;
+                font-size: 22px !important;
+            }
+            .nav-controls {
+                bottom: 12px !important;
+                padding: 4px 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="slide-deck">
+        <!-- Bubbling IPA Beer Foam Effect -->
+        <div class="bubble-bg">
+            <div class="bubble" style="left: 10%; width: 14px; height: 14px; animation-duration: 8s; animation-delay: 0s;"></div>
+            <div class="bubble" style="left: 25%; width: 22px; height: 22px; animation-duration: 11s; animation-delay: 2s;"></div>
+            <div class="bubble" style="left: 40%; width: 12px; height: 12px; animation-duration: 7s; animation-delay: 0.5s;"></div>
+            <div class="bubble" style="left: 55%; width: 18px; height: 18px; animation-duration: 9s; animation-delay: 3s;"></div>
+            <div class="bubble" style="left: 70%; width: 15px; height: 15px; animation-duration: 10s; animation-delay: 1.5s;"></div>
+            <div class="bubble" style="left: 85%; width: 20px; height: 20px; animation-duration: 8.5s; animation-delay: 4s;"></div>
+            <div class="bubble" style="left: 93%; width: 10px; height: 10px; animation-duration: 6s; animation-delay: 1s;"></div>
+        </div>
+        <!-- SLIDE 1: Title -->
+        <div class="slide active">
+            <div class="slide-header">
+                <span class="brand">🚀 GROK LAB x CLUBSXAI</span>
+                <span class="tag">REELS COURSE</span>
+            </div>
+            <div class="slide-content" style="flex-direction: row; gap: 40px; justify-content: center;">
+                <div style="flex: 1.2; text-align: left;">
+                    <h1 class="title-large" style="font-size:48px;">คุยก่อน ลงมือทีหลัง!<br><span style="color:var(--color-primary)">Talk First, Build Later</span></h1>
+                    <p class="subtitle" style="font-weight:600; margin-top:10px;">คอร์สสร้างคลิป Reels ด้วย AI & บอทของคุณเอง 🎬</p>
+                    <p class="thai-sub" style="font-size:15px; margin-top:8px;"><strong>พรุ่งนี้คือวันแรกที่เราจะได้กดส่งคลิปจริง!</strong> ร่วมเรียนรู้เคียงข้างครู Bo (ผู้ติดตามกว่า 2.6 แสนคน) สอนสนุก เข้าใจง่าย!</p>
+                </div>
+                <div style="flex: 0.8; text-align: center;">
+                    <img src="img_001.jpg" alt="Instructor Master Bo" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Instructor: ครู Bo & ทีมหลังบ้าน</span>
+                <span>Press Space or Arrow keys</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: What You Learn -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">WHAT YOU LEARN</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:30px;">
+                <div style="flex:1.3; text-align:left; display:flex; flex-direction:column; gap:12px;">
+                    <h2>คอร์สนี้สอนแค่สิ่งที่ใช้ทำคลิปจริง <span class="subtitle">/ Easy & Practical</span></h2>
+                    <p style="color:var(--color-text-muted); font-size:14px; margin-top:-4px;"><em>เคยต้องวุ่นวายกับการเซ็ตเซิร์ฟเวอร์และตั้งค่าโค้ดหลังบ้านเป็นวันๆ → พรุ่งนี้แค่ป้อนไอเดียใน Discord ทีมหลังบ้านพร้อมโมเดล LoRA สำเร็จรูปจะจัดการให้หมด!</em></p>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div class="card" style="padding:12px 16px;">
+                            <h4 style="color:var(--color-primary); font-size:16px; margin-bottom:4px;">🤖 สั่งบอท Discord เจนภาพ-วิดีโอ-เสียงฟรี!</h4>
+                            <p style="font-size:12px; line-height:1.4;">ใช้งานระบบ <strong>Grok CLI</strong> ที่สามารถเจนภาพ เจนวิดีโอ และเจนเสียงได้ฟรี รวมอยู่ในแพ็กเกจ Super Grok สั่งงานง่ายผ่าน Discord ลดขั้นตอนซับซ้อน!</p>
+                        </div>
+                        <div class="card" style="padding:12px 16px;">
+                            <h4 style="color:var(--color-accent); font-size:16px; margin-bottom:4px;">🎨 สตอรี่บอร์ด มุมกล้อง & เทคนิคแต่งสี</h4>
+                            <p style="font-size:12px; line-height:1.4;">ปูพื้นฐานการเขียน Storyboard, จัด Block Shots, กำหนดมุมกล้อง (Angles), เทคนิคถ่ายทำ พร้อมเทคนิคแต่งสีวิดีโอระดับมือโปรด้วย Preset DNA ของผู้เชี่ยวชาญ!</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:0.7; text-align:center; display:flex; align-items:center; justify-content:center;">
+                    <img src="bo-assets-gmaicore/bo-full-cafe-stand.jpg" alt="Master Bo Cafe" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>10 Seats · เน้นทำจริง ไม่เน้นทฤษฎี</span>
+                <span>Slide 2 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Visual Pipeline -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">PIPELINE</span>
+            </div>
+            <div class="slide-content">
+                <h2>แผนผลิตวิดีโอ 3 ขั้นตอน / You, The Bot Army, and The Clip</h2>
+                <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:12px;"><em>เคยต้องเหนื่อยถ่ายทำและตัดต่อครึ่งวัน → พรุ่งนี้ทำเสร็จใน 3 นาทีผ่านกองทัพบอทหลังบ้าน!</em></p>
+                <div class="flow-diagram-light">
+                    <div style="text-align:center;">
+                        <div style="font-size:36px;">คุณ</div>
+                        <h4 style=" margin-top:4px;">1. ป้อนไอเดีย (You)</h4>
+                        <p style="font-size:11px; color:var(--color-text-muted);">เขียนพร้อมต์เล่าเรื่องใน Discord</p>
+                    </div>
+                    <div style="font-size:24px; color:var(--color-primary);">➔</div>
+                    <div style="text-align:center;">
+                        <div style="font-size:36px;">🤖🤖</div>
+                        <h4 style=" margin-top:4px;">2. กองทัพบอท (Bot Army)</h4>
+                        <p style="font-size:11px; color:var(--color-text-muted);">สลับหน้า เกรดสี เรนเดอร์ช็อต</p>
+                    </div>
+                    <div style="font-size:24px; color:var(--color-primary);">➔</div>
+                    <div style="text-align:center;">
+                        <div style="font-size:36px;">🎬</div>
+                        <h4 style=" margin-top:4px;">3. คลิป Reels (Output)</h4>
+                        <p style="font-size:11px; color:var(--color-text-muted);">ได้คลิป 6 วินาทีนำไปโพสได้ทันที</p>
+                    </div>
+                </div>
+                <div style="display:flex; justify-content:center; margin-top:10px;">
+                    <img src="img_002.jpg" alt="AI Lab Candid" class="banana-img" style="max-height:120px; width:auto; object-fit:contain;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>สรุปจบใน 3 นาทีหลังกดส่ง</span>
+                <span>Slide 3 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Video Demo Showcase -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">DEMO SHOWCASE</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:40px; align-items:center;">
+                <div style="flex:1.1; text-align:left;">
+                    <h2>เบื้องหลังคลิปช้าง <span class="subtitle">/ Chang-Ad Storyboard</span></h2>
+                    <p style="color:var(--color-text-muted); font-size:13px; margin-top:6px; margin-bottom:12px;"><strong>คุย Discord วน Feedback</strong> ➔ บอทตัดต่อภาพ ซับไตเติล และ End Card ให้เสร็จสรรพโดยไม่ต้องเปิดโปรแกรม Premiere Pro!</p>
+                    
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:12px;">
+                        <div class="card" style="padding:10px; border-color:var(--color-primary); background:rgba(245, 158, 11, 0.04); margin:0;">
+                            <h5 style="color:var(--color-primary); font-size:13px; margin-bottom:2px;">🎬 3 จังหวะหลัก (Beats) ที่ครู Bo เคี่ยวจนสำเร็จ:</h5>
+                            <ol style="font-size:12px; line-height:1.4; padding-left:16px; display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+                                <li><strong>Lonely Cinematic</strong>: ช็อตเปิดสุดเหงากลางคืนที่มีบรรยากาศภาพยนตร์</li>
+                                <li><strong>Bar + Sapporo</strong>: ช็อตดอลลี่ผ่านบาร์เครื่องดื่มสุดสมจริง</li>
+                                <li><strong>การ์ดช้างท้าย (HyperFrames)</strong>: ปิดจ๊อบด้วย End Card แบรนด์ที่บอทประกอบให้ใน 1 วินาที</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size:12px; color:var(--color-text-muted);">
+                        💡 <strong>เรื่องสั้นจากครู Bo</strong>: เคยต้องตัดต่อมือข้ามวัน ➔ พรุ่งนี้แค่วนคอมเมนต์ฟีดแบ็กกับทีมบอทหลังบ้าน ก็ได้คลิปโฆษณาระดับมืออาชีพแล้ว!
+                    </p>
+                </div>
+                <div style="flex:0.9; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px;">
+                    <video src="bo-assets-gmaicore/chang-ad-v14-bo.mp4" controls autoplay loop muted playsinline class="banana-img" style="max-height:330px; width:100%; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.8); background:#000;"></video>
+                    <div style="font-size:11px; color:#FFC000; font-family:var(--font-mono); background:rgba(0,0,0,0.4); padding:6px 10px; border-radius:6px; border:1px dashed var(--color-border); width:100%;">
+                        💬 <strong>คำสั่งแก้:</strong> "พิมพ์ว่าซับหายไป / การ์ดช้างย้ายท้าย / ทำให้เท่ขึ้น" ➔ ได้รุ่น v14 ทันทีในเซสชันเดียว!
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>สร้างด้วย AI & Grok 100% ไม่ต้องแต่งมือ</span>
+                <span>Slide 4 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Discord Workflow -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">DISCORD</span>
+            </div>
+            <div class="slide-content">
+                <h2>คุยใน Discord แล้วได้คลิปกลับ <span class="subtitle">/ Your Main Workspace</span></h2>
+                <div class="grid-2">
+                    <div style="text-align:left;">
+                        <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:8px;"><em>เคยต้องสลับโปรแกรมและพิมพ์ท่อระบบวิดีโอซับซ้อน → พรุ่งนี้คุยแชทใน Discord ง่ายเหมือนส่งข้อความหาเพื่อน</em></p>
+                        <ul style="margin-top:10px;">
+                            <li><strong>เข้าห้องแชทคอร์ส</strong>: ครูแจกลิงก์ invite — ติดตั้ง Discord บนมือถือ/คอมได้ฟรี</li>
+                            <li><strong>พิมพ์สั่งงานได้ครบเครื่อง</strong>: เจนภาพนิ่ง, คลิปวิดีโอ, ทำเทมเพลต (Templates), หรือเขียนโค้ดเพิ่มความสามารถบอท (Skills) ก็ทำได้หมด</li>
+                            <li><strong>รับรูป + วิดีโอในแชท</strong>: ดาวน์โหลดผลลัพธ์ผ่านช่องแชทนำไปโพสใช้งานได้ทันที</li>
+                        </ul>
+                        <div class="card" style="background:var(--color-secondary); margin-top:10px; padding:10px 14px; border-color:var(--color-primary);">
+                            <h4 style="color:var(--color-primary); font-size:13px; margin-bottom:4px;">💬 ลองสั่งผลิตคลิปแรกพรุ่งนี้ (ก็อปวาง):</h4>
+                            <p style="font-family:var(--font-mono); font-size:12px; color:#FFC000; line-height:1.4;">/grok-video prompt: "ครู Bo นั่งดื่มกาแฟริมหน้าต่าง แสงอบอุ่นระดับโรงภาพยนตร์" style: "cinematic"</p>
+                        </div>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="bo-assets-gmaicore/bo-portrait-v2-image-edit.jpg" alt="Master Bo instructor" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Discord-first · ไม่ต้องเขียนโค้ดยาว</span>
+                <span>Slide 5 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Quick Login (one-time) -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">LOGIN (ครั้งเดียว)</span>
+            </div>
+            <div class="slide-content" style="align-items:stretch;">
+                <h2>ล็อกอินครั้งแรก <span class="subtitle">/ ทำครั้งเดียวพอ</span></h2>
+                <div class="grid-2" style="align-items:center; gap:20px;">
+                    <div style="text-align:left;">
+                        <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:8px;"><em>เคยต้องปวดหัวจดจำ API Key หรือสมัครบัญชีซับซ้อน → พรุ่งนี้ครูนั่งข้างๆ ช่วยสแกน QR ล็อกอินครั้งเดียวใช้งานได้ตลอดคอร์ส</em></p>
+                        <pre><code style="font-size:12px;">grok login --device-auth
+# เปิด https://x.ai/device บนมือถือ → กรอกโค้ด</code></pre>
+                        <div class="card" style="padding:10px; font-size:12px; text-align:left; margin-top:8px;">
+                            <strong>✅ ไม่ต้องจำ API key</strong> · ไม่ต้องตั้ง billing เอง · ทีมครูหลังบ้านจัดการระบบไว้ให้หมดแล้ว
+                        </div>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="img_004.jpg" alt="Bo at home" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>ครูนั่งข้างช่วยสแกน QR ครั้งเดียวจบ</span>
+                <span>Slide 6 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Playful Commands -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">BASIC SHELL</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:30px; align-items:center;">
+                <div style="flex:1.3; text-align:left; display:flex; flex-direction:column; gap:12px;">
+                    <h2>สั่งงานบอทผ่านคำสั่ง <span class="subtitle">/ Grok Engine Commands</span></h2>
+                    <p style="color:var(--color-text-muted); font-size:14px; margin-top:-4px;"><em>เคยต้องเปิดโปรแกรมแรนเดอร์การ์ดจอหนักๆ → พรุ่งนี้คีย์คำสั่งสั้นๆ 1 บรรทัดผ่านบอทก็เสร็จแล้ว!</em></p>
+                    <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+                        <div style="display:flex; gap:15px;">
+                            <div style="flex:1;">
+                                <h4 style=" color:var(--color-primary); font-size:14px; margin-bottom:4px;">💬 คุยปกติเขียนบทคลิป</h4>
+                                <pre style="padding:8px 12px; font-size:12px;"><code style="font-size:12px;">grok "แต่งบทคลิป Reels เกี่ยวกับ AI"</code></pre>
+                            </div>
+                            <div style="flex:1;">
+                                <h4 style=" color:var(--color-secondary); font-size:14px; margin-bottom:4px;">🎬 เจนวิดีโอทันควัน</h4>
+                                <pre style="padding:8px 12px; font-size:12px;"><code style="font-size:12px;">grok generate-video --prompt "space banana"</code></pre>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:10px 14px; border-color:var(--color-primary); background:var(--color-card-bg);">
+                            <h4 style="color:var(--color-primary); font-size:13px; margin-bottom:4px;">💡 ลองรันพรุ่งนี้ (3 คำสั่งหลัก):</h4>
+                            <ul style="font-size:12px; display:flex; flex-direction:column; gap:4px; list-style:none;">
+                                <li style="padding-left:18px; margin-bottom:2px; font-size:12px;"><strong style="color:#FFC000;">/grok-draft [ไอเดีย]</strong>: สั่งบอทร่างบท Reels ดึงดูดคนดูใน 3 วินาทีแรก</li>
+                                <li style="padding-left:18px; margin-bottom:2px; font-size:12px;"><strong style="color:#FFC000;">/grok-image [มุมกล้อง]</strong>: เจนเฟรมภาพถ่ายจัดวางองค์ประกอบ</li>
+                                <li style="padding-left:18px; margin-bottom:2px; font-size:12px;"><strong style="color:#FFC000;">/grok-video [พร้อมต์]</strong>: สั่งแปลงรูปภาพเป็นคลิป 6 วินาทีส่งกลับเข้า Discord</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:0.7; text-align:center;">
+                    <img src="bo-assets-gmaicore/bo-life-office.jpg" alt="Master Bo terminal" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>พิมพ์สั่งแบบแชทใน Discord ได้ทันที</span>
+                <span>Slide 7 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Why No LoRA -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">WHY EASY</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:40px;">
+                <div style="flex:1.2; text-align:left;">
+                    <h2>เข้าใจเรื่อง LoRA แบบง่ายๆ <span class="subtitle">/ Simple LoRA Setup</span></h2>
+                    <p style="font-size:14px; color:var(--color-text-muted); margin-bottom:10px;"><em>เคยคิดว่าการดึง LoRA ใบหน้าและโทนสีมาใช้งานมันยาก → พรุ่งนี้เรามีโมเดล LoRA หน้าครู Bo สำเร็จรูปพร้อมให้เรียกใช้ทันที!</em></p>
+                    <ul>
+                        <li>✅ <strong>คุมตัวละครด้วย LoRA</strong> — คอนเซ็ปต์การสวมใบหน้าและตัวละครให้ออกมาเหมือนกันทุกช็อต ไม่โดด</li>
+                        <li>✅ <strong>เรียกใช้งานผ่านแชท</strong> — พิมพ์คำสั่งดึง LoRA สไตล์และใบหน้าของครู Bo มาทาบลงบนคลิปได้ง่ายๆ</li>
+                        <li>✅ <strong>DNA สไตล์ระดับโปร</strong> — ดึง Preset สไตล์สีและมุมภาพของคนเก่งๆ มาใส่ในคลิปของเรา</li>
+                        <li>✅ <strong>ทีมครูรันเบื้องหลังให้</strong> — ไม่ต้องเช่า GPU แสนแพงรอเทรนข้ามวัน ทีมงานจัดเตรียมกำลังเครื่องไว้แล้ว</li>
+                        <li>✅ <strong>เข้าใจโครงสร้างพื้นฐาน</strong> — รู้จักวิธีกำหนดสัดส่วนและน้ำหนัก LoRA (Weights) เบื้องต้นโดยไม่ต้องลงลึก</li>
+                    </ul>
+                </div>
+                <div style="flex:0.8; text-align:center;">
+                    <img src="bo-assets-gmaicore/bo-life-cafe.jpg" alt="Bo lifestyle" class="banana-img">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>เข้าใจและเรียกใช้ LoRA สำเร็จรูปใน 3 นาที</span>
+                <span>Slide 8 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: Why Grok is Ultimate -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">COMPARE</span>
+            </div>
+            <div class="slide-content" style="align-items:stretch;">
+                <h2>ทำไมระบบของเราถึง "จบที่สุด" <span class="subtitle">/ Grok vs. Other Apps</span></h2>
+                <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:8px;"><em>แอปสำเร็จรูปอื่นอาจดูใช้ง่ายตอนแรก แต่สุดท้ายติดข้อจำกัด ปรับแก้อะไรตามใจไม่ได้เลย — ของเราคืออิสระที่แท้จริง</em></p>
+                
+                <div class="grid-2" style="gap:20px; margin-top:5px;">
+                    <!-- Others Card -->
+                    <div class="card" style="border-color:rgba(255,255,255,0.08); padding:16px;">
+                        <h4 style="color:oklch(60% 0.01 95); margin-bottom:10px; display:flex; align-items:center; gap:8px;">❌ แอปสำเร็จรูปทั่วไป (Others)</h4>
+                        <ul style="display:flex; flex-direction:column; gap:8px;">
+                            <li style="font-size:13px; color:oklch(70% 0.01 95); line-height:1.4;"><strong style="color:oklch(80% 0.01 95);">แก้ไขไม่ได้</strong>: ปรับเปลี่ยนสไตล์หรือสลับใบหน้าตามสั่งไม่ได้เลย ติดโครงสร้างสำเร็จรูป</li>
+                            <li style="font-size:13px; color:oklch(70% 0.01 95); line-height:1.4;"><strong style="color:oklch(80% 0.01 95);">ยุ่งยากซับซ้อน</strong>: ต้องเรียนรู้วิธีการเชื่อมท่อ หรือตั้งค่า API/Pipeline หลายโปรแกรม</li>
+                            <li style="font-size:13px; color:oklch(70% 0.01 95); line-height:1.4;"><strong style="color:oklch(80% 0.01 95);">ติดลายน้ำ & ปรับไม่ได้</strong>: แอปอื่นติดลายน้ำ (Watermark) บังรูป และเปลี่ยนแปลงอะไรแทบไม่ได้</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Us Card -->
+                    <div class="card" style="border-color:var(--color-primary); padding:16px;">
+                        <h4 style="color:var(--color-primary); margin-bottom:10px; display:flex; align-items:center; gap:8px;">✅ ระบบ Grok ของเรา (Us)</h4>
+                        <ul style="display:flex; flex-direction:column; gap:8px;">
+                            <li style="font-size:13px; line-height:1.4;"><strong>ยืดหยุ่น 100%</strong>: สั่งเจาะจงมุมกล้อง สตอรี่บอร์ด หรือแต่งสีแบบฟรีสไตล์ผ่านแชทได้ทันที</li>
+                            <li style="font-size:13px; line-height:1.4;"><strong>เซฟ Pattern เป็นสกิล</strong>: บันทึกโครงสร้างคลิปโปรดเป็นสกิลส่วนตัว สั่งคลิปถัดไปแตกช็อตเรนเดอร์ได้ไวสุดๆ</li>
+                            <li style="font-size:13px; line-height:1.4;"><strong>ต่อได้ทุกแพลตฟอร์ม</strong>: เชื่อมต่อและส่งผลงานขึ้น Reels, TikTok, YouTube Shorts, IG ได้ครบจบในที่เดียว</li>
+                            <li style="font-size:13px; line-height:1.4;"><strong>ไม่มีลายน้ำ นำไปใช้งานได้เลย</strong>: นำผลงาน Reels ไปลงเพจทำเงินได้ทันที 100% ไร้ข้อผูกมัด</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>The Ultimate Complete Solution</span>
+                <span>Slide 9 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Make Video -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">VIDEO</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:25px; align-items:center;">
+                <div style="flex:1.0; text-align:left; display:flex; flex-direction:column; gap:10px;">
+                    <h2>ผลิตคลิปวิดีโอ Reels <span class="subtitle">/ 3 Steps to Video</span></h2>
+                    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><em>เคยต้องนั่งตัดต่อวิดีโอมือถือหลายชั่วโมง → พรุ่งนี้สั่งบอท 3 ขั้นตอนจบ!</em></p>
+                    <div style="display:flex; flex-direction:column; gap:10px; width:100%;">
+                        <div class="card" style="border-color:var(--color-primary); padding:12px 16px;">
+                            <h4 style=" color:var(--color-primary); font-size:16px; margin-bottom:4px;">1️⃣ กำหนดสตอรี่บอร์ด & ฉาก</h4>
+                            <p style="font-size:12px; line-height:1.4;">ระบุแนวช็อคและพร้อมต์เพื่อจัดมุมกล้องครู Bo ในแชท Discord</p>
+                        </div>
+                        <div class="card" style="padding:12px 16px;">
+                            <h4 style=" color:var(--color-accent); font-size:16px; margin-bottom:4px;">2️⃣ เจนคลิป & 3️⃣ โหลดไฟล์สีระดับโปร</h4>
+                            <p style="font-size:12px; line-height:1.4;">บอทแอนิเมตเป็นคลิป Reels 6 วินาที พร้อมเกรดแต่งสีด้วย Preset DNA สำเร็จรูป</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:1.2; display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;">
+                    <div style="width:100%; text-align:center;">
+                        <img src="bo-assets-gmaicore/video-shot-screenshot.jpg" alt="Command" class="banana-img" style="max-height:180px; width:auto;">
+                        <p style="font-size:10px; color:var(--color-text-muted); margin-top:2px;">คำสั่งเริ่มวางมุมกล้องใน Discord</p>
+                    </div>
+                    <div style="display:flex; gap:10px; width:100%; justify-content:center;">
+                        <div style="flex:1; text-align:center;">
+                            <img src="bo-assets-gmaicore/scene03-lowangle.jpg" alt="Low Angle" class="banana-img" style="max-height:120px; width:auto;">
+                            <p style="font-size:10px; color:var(--color-text-muted); margin-top:2px;">ช็อต 3: Low Angle</p>
+                        </div>
+                        <div style="flex:1; text-align:center;">
+                            <img src="bo-assets-gmaicore/scene04-overshoulder.jpg" alt="Over Shoulder" class="banana-img" style="max-height:120px; width:auto;">
+                            <p style="font-size:10px; color:var(--color-text-muted); margin-top:2px;">ช็อต 4: Over Shoulder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>สั่งงานง่ายเสร็จใน 3 นาที</span>
+                <span>Slide 10 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: Quick Image -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">IMAGE</span>
+            </div>
+            <div class="slide-content" style="align-items:stretch;">
+                <h2>สร้างภาพประกอบคลิป <span class="subtitle">/ คำสั่งเดียวจบ</span></h2>
+                <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:8px;"><em>เคยต้องเปิดหน้าจอ ComfyUI เชื่อมท่อยุ่งยาก → พรุ่งนี้แชทคุยคำสั่งบรรทัดเดียวจบ!</em></p>
+                <div class="discord-message" style="background:#1e1f22; border: 1px solid var(--color-border); border-radius:12px; padding:12px 16px; width:100%; font-family:var(--font-body); text-align:left; margin-bottom:6px;">
+                    <div style="color:#5865F2; font-weight:bold; font-size:11px; margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                        <span style="background:#5865F2; color:white; padding:2px 6px; border-radius:4px; font-size:9px; font-weight:800;">DISCORD BOT</span>
+                        <span style="color:var(--color-text-muted);">พิมพ์คำสั่งแชทเพื่อเจนภาพ</span>
+                    </div>
+                    <div style="color:var(--color-text); font-size:14px; font-family:var(--font-mono); line-height:1.4;">
+                        /grok "สร้างภาพครู Bo ยืนในสตูดิโอ สไตล์ Reels สดใส 16:9"
+                    </div>
+                </div>
+                <p class="thai-sub" style="margin-top:6px;">รูปหน้าครู Bo มี ref พร้อมแล้ว — <strong>ไม่ต้องเทรน LoRA</strong> · ได้ภาพใน Discord ภายในไม่กี่นาที</p>
+                <div style="display:flex; justify-content:center; margin-top:10px; gap:15px; width:100%;">
+                    <div style="flex:1; text-align:center;">
+                        <img src="bo-assets-gmaicore/bo-comparison-screenshot.jpg" alt="Ref Screen" class="banana-img" style="max-height:220px; width:auto;">
+                        <p style="font-size:11px; color:var(--color-text-muted); margin-top:4px;">ภาพเปรียบเทียบคำสั่งบอท</p>
+                    </div>
+                    <div style="flex:1; text-align:center;">
+                        <img src="bo-assets-gmaicore/bo-face-swap-result.jpg" alt="Face Swap Result" class="banana-img" style="max-height:220px; width:auto;">
+                        <p style="font-size:11px; color:var(--color-text-muted); margin-top:4px;">ผลลัพธ์การสลับใบหน้าจริง</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>image_edit · ไม่ต้องลงโปรแกรมเพิ่ม</span>
+                <span>Slide 11 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: Pre-Class Checklist -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">INFO & CHECKLIST</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:40px;">
+                <div style="flex:1.2; text-align:left; display:flex; flex-direction:column; gap:10px;">
+                    <h2>ข้อมูลจัดเรียน & การเตรียมตัว <span class="subtitle">/ Course Info & Checklist</span></h2>
+                    
+                    <!-- Workshop Info Box -->
+                    <div class="card" style="padding:10px 14px; border-color:var(--color-primary); background:rgba(255, 123, 57, 0.05); margin-bottom:5px;">
+                        <h4 style="color:var(--color-primary); font-size:14px; margin-bottom:4px;">📅 กำหนดการจัดเวิร์กชอป:</h4>
+                        <div style="font-size:12px; line-height:1.5; color:var(--color-text);">
+                            <strong>วันเรียน</strong>: วันพุธที่ 8 กรกฎาคม 2026 เวลา 13:00 - 17:00 น. (หลังเที่ยง | เรียน 4 ชั่วโมง)<br>
+                            <strong>สถานที่</strong>: <a href="https://maps.app.goo.gl/A8H7tCgzFmXYqEk59?g_st=ac" target="_blank" style="color:var(--color-accent); text-decoration:underline;">56 CORE Home Office (ซอยอุดมสุข 18)</a><br>
+                            <strong>ค่าเรียน</strong>: 999 บาท (รอบกินเบียร์ ปล่อยของ!)
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        <div style="font-size:12px;">💬 <strong>1. บัญชี Discord พร้อม</strong>: เข้าห้องเรียนตามลิงก์ที่ครูส่งให้</div>
+                        <div style="font-size:12px;">📱 <strong>2. เตรียมสแกน QR บนมือถือ</strong>: สแกน QR โค้ดเพื่อล็อกอินบอทใช้งานครั้งแรก</div>
+                        <div style="font-size:12px;">🎁 <strong>3. กดรับสิทธิ์โควต้า Super Grok</strong>: รับสิทธิ์ใช้งานโหมดวิดีโออัจฉริยะ Super Grok ฟรี 3 วัน!</div>
+                        <div style="border-top:1px dashed var(--color-border); padding-top:6px; font-size:11px; color:var(--color-text-muted);">
+                            ✨ <strong>ไม่ต้องเตรียม</strong>: การ์ดจอแรงๆ · ComfyUI · เซิร์ฟเวอร์ — ทีมครูหลังบ้านจัดเตรียมให้ครบถ้วนแล้ว!
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:0.8; text-align:center;">
+                    <img src="bo-assets-gmaicore/bo-v5-home-window.jpg" alt="Bo ready" class="banana-img" style="max-height:280px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>ง่ายกว่าที่คิด · ฝึกไปพร้อมกัน</span>
+                <span>Slide 12 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: Support details -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">SUPPORT</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:30px; align-items:center;">
+                <div style="flex:1.3; text-align:left; display:flex; flex-direction:column; gap:12px;">
+                    <h2>ครู Bo และทีมหลังบ้านดูแลไม่ทิ้งกัน! <span class="subtitle">/ Student Support</span></h2>
+                    <p class="subtitle" style="font-size:14px; margin-bottom:4px;">เป้าหมายคือลูกศิษย์ครู Bo ทุกคนต้องผลิต Reels เองได้ ไม่มีทิ้งกลางทาง</p>
+                    <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+                        <div class="card" style="padding:12px 16px;">
+                            <h4 style=" color:var(--color-primary); font-size:15px; margin-bottom:4px;">🏫 56 CORE Studio</h4>
+                            <p style="font-size:12px; color:var(--color-text-muted); line-height:1.4;">สถานที่เตรียมพร้อมต้อนรับผู้เรียน มีคอมพิวเตอร์และเซิร์ฟเวอร์สำรองให้เข้ามานั่งเรียนและแรนเดอร์คลิปได้ฟรี</p>
+                        </div>
+                        <div class="card" style="padding:12px 16px;">
+                            <h4 style=" color:var(--color-accent); font-size:15px; margin-bottom:4px;">💬 ห้องแชทเฉพาะลูกศิษย์ครู Bo</h4>
+                            <p style="font-size:12px; color:var(--color-text-muted); line-height:1.4;">ส่งการบ้าน ซักถามปัญหา หรือปรึกษาไอเดียทำช่องกับครูและทีมงานหลังบ้านได้ตลอด 24 ชั่วโมง</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:0.7; text-align:center;">
+                    <img src="bo-assets-gmaicore/bo-full-condo-lobby.jpg" alt="Master Bo Support" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>ลูกศิษย์ครู Bo · ฝึกไปเรื่อยๆ พัฒนาไปด้วยกัน</span>
+                <span>Slide 13 / 14</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: Day 1 Agenda -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="brand">TALK FIRST, BUILD LATER</span>
+                <span class="tag">DAY 1 AGENDA</span>
+            </div>
+            <div class="slide-content" style="flex-direction:row; gap:30px; align-items:center;">
+                <div style="flex:1.3; text-align:left; display:flex; flex-direction:column; gap:12px;">
+                    <h2>กำหนดการเรียนวันแรก <span class="subtitle">/ Day 1 Agenda</span></h2>
+                    <p style="color:var(--color-text-muted); font-size:14px; margin-top:-4px;"><em>เริ่มจากศูนย์ จนผลิตผลงานวิดีโอ Reels แรกออกสู่เพจจริงได้ในวันเดียว!</em></p>
+                    <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+                        <div class="card" style="padding:10px 14px; border-color:rgba(255,255,255,0.08);">
+                            <h4 style="color:var(--color-primary); font-size:15px; margin-bottom:2px;">🚀 13:00 - 14:00: แนะนำทีมงาน & ล็อกอินบอท</h4>
+                            <p style="font-size:12px; color:var(--color-text-muted); line-height:1.4;">ปรับแนวคิดความสร้างสรรค์ แนะนำทีมหลังบ้าน และสแกน QR ล็อกอินครั้งแรก</p>
+                        </div>
+                        <div class="card" style="padding:10px 14px; border-color:rgba(255,255,255,0.08);">
+                            <h4 style="color:var(--color-accent); font-size:15px; margin-bottom:2px;">🤖 14:00 - 15:00: ตั้งชื่อ & ป้อนสไตล์ (LoRA) บอทตัวแรก</h4>
+                            <p style="font-size:12px; color:var(--color-text-muted); line-height:1.4;">เจนรูปตัวละคร ตั้งค่าสไตล์ความชอบ และเรียกใช้ LoRA สำเร็จรูปในแชท</p>
+                        </div>
+                        <div class="card" style="padding:10px 14px; border-color:rgba(255,255,255,0.08);">
+                            <h4 style="color:#FFC000; font-size:15px; margin-bottom:2px;">🎬 15:00 - 17:00: วางสตอรี่บอร์ด & กดส่งคลิปแรก</h4>
+                            <p style="font-size:12px; color:var(--color-text-muted); line-height:1.4;">จัดช็อตมุมกล้อง สั่งแรนเดอร์วิดีโอ 6 วินาที และนำไปโพสลงเพจเพื่อทำรายได้จริง!</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex:0.7; text-align:center; display:flex; align-items:center; justify-content:center;">
+                    <img src="img_001.jpg" alt="Bo teaching" class="banana-img" style="max-height:340px; width:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>เริ่มต้นก้าวแรกของการสร้างกองทัพบอท</span>
+                <span>Slide 14 / 14</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()">←</button>
+        <span class="slide-counter"><span id="current">1</span> / <span id="total">14</span></span>
+        <button class="nav-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let current = 1;
+        const total = document.querySelectorAll('.slide').length;
+        document.getElementById('total').textContent = total;
+
+        function showSlide(n) {
+            if (n < 1) n = 1;
+            if (n > total) n = total;
+            current = n;
+            document.querySelectorAll('.slide').forEach((s, i) => {
+                s.classList.toggle('active', i === n - 1);
+            });
+            document.getElementById('current').textContent = n;
+            document.getElementById('progressBar').style.width = (n / total * 100) + '%';
+        }
+
+        function nextSlide() { showSlide(current + 1); }
+        function prevSlide() { showSlide(current - 1); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-controls') && !e.target.closest('pre') && !e.target.closest('code') && !e.target.closest('video')) {
+                nextSlide();
+            }
+        });
+
+        showSlide(1);
+    </script>
+</body>
+</html>

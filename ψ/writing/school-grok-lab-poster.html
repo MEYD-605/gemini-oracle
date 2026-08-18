@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Grok Lab - Poster</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: oklch(7% 0.006 95); /* Deep warm-black lacquer */
+            --color-card-bg: rgba(255, 255, 255, 0.02); /* Glassmorphic card */
+            --color-primary: #F59E0B; /* Golden Amber */
+            --color-secondary: rgba(245, 158, 11, 0.08); /* Amber tint */
+            --color-accent: #FF9F0A;
+            --color-success: #30D158; /* iOS-like premium green */
+            --color-danger: #FF453A;
+            --color-border: rgba(255, 255, 255, 0.12); /* Low opacity 12% thin border */
+            --color-text: #FDFBF7; /* Cream white text */
+            --color-text-muted: rgba(255, 255, 255, 0.55);
+            --gradient-primary: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            --font-heading: 'Space Grotesk', 'Sarabun', sans-serif;
+            --font-body: 'Inter', 'Sarabun', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #0c0a08;
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.4;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Poster Container (A4-esque optimized for high-end look) */
+        .poster {
+            width: 100%;
+            max-width: 840px;
+            background: var(--color-bg);
+            background-image: 
+                linear-gradient(rgba(245, 158, 11, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 158, 11, 0.012) 1px, transparent 1px),
+                radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.15) 0%, transparent 80%),
+                radial-gradient(circle at 10% 10%, rgba(217, 119, 6, 0.08) 0%, transparent 50%);
+            background-size: 24px 24px, 24px 24px, auto, auto;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Header block */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 20px;
+        }
+
+        .header-title h1 {
+            font-family: var(--font-heading);
+            font-size: 34px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFF 30%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .header-title p {
+            color: var(--color-text-muted);
+            font-size: 15px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .meta-badge {
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.08);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);
+            color: var(--color-primary);
+        }
+
+        /* Flow sections */
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%);
+        }
+
+        /* Diagram grid */
+        .pipeline-diagram {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            align-items: center;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            padding: 16px;
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        .node {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .node-icon {
+            font-size: 20px;
+        }
+
+        .node h4 {
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .node p {
+            font-size: 9px;
+            color: var(--color-text-muted);
+        }
+
+        .arrow {
+            text-align: center;
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Details Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+        }
+
+        /* Commands list */
+        .command-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 8px 0;
+        }
+
+        .command-row:last-child { border: none; }
+
+        .command-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .command-label span {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            display: block;
+            font-weight: 400;
+        }
+
+        .command-code {
+            font-family: var(--font-mono);
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--color-primary);
+            font-size: 12px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Side info card */
+        .info-block {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .info-block h5 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .info-block p {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        /* Embedded Banana Images */
+        .banana-img {
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            max-height: 80px;
+            object-fit: cover;
+        }
+
+        /* Footer / QR block */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr auto;
+            gap: 20px;
+            align-items: center;
+            border-top: 1px solid var(--color-border);
+            padding-top: 20px;
+        }
+
+        .qr-placeholder {
+            width: 80px;
+            height: 80px;
+            border: 1px dashed rgba(245, 158, 11, 0.4);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--color-primary);
+            background: rgba(245, 158, 11, 0.04);
+            padding: 6px;
+            text-transform: uppercase;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .rules-badge {
+            display: inline-flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .rule-item {
+            font-size: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .rule-ok { background: rgba(48, 209, 88, 0.1); color: var(--color-success); }
+        .rule-no { background: rgba(255, 69, 58, 0.1); color: var(--color-danger); }
+
+        /* Subtle rising beer bubbles for poster */
+        @keyframes rise-poster {
+            0% { transform: translateY(0) scale(0.6); opacity: 0; }
+            10% { opacity: 0.25; }
+            90% { opacity: 0.25; }
+            100% { transform: translateY(-700px) scale(1.1); opacity: 0; }
+        }
+        .bubble-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+            border-radius: 20px;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -30px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 50%;
+            animation: rise-poster 12s infinite linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- Bubbling IPA Beer Foam Effect -->
+        <div class="bubble-bg">
+            <div class="bubble" style="left: 8%; width: 12px; height: 12px; animation-duration: 9s; animation-delay: 0s;"></div>
+            <div class="bubble" style="left: 20%; width: 18px; height: 18px; animation-duration: 12s; animation-delay: 3s;"></div>
+            <div class="bubble" style="left: 35%; width: 10px; height: 10px; animation-duration: 8s; animation-delay: 1s;"></div>
+            <div class="bubble" style="left: 50%; width: 15px; height: 15px; animation-duration: 10s; animation-delay: 4s;"></div>
+            <div class="bubble" style="left: 68%; width: 14px; height: 14px; animation-duration: 11s; animation-delay: 2s;"></div>
+            <div class="bubble" style="left: 82%; width: 16px; height: 16px; animation-duration: 9.5s; animation-delay: 5s;"></div>
+        </div>
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-title" style="text-align:left;">
+                <h1>คุยก่อน ลงมือทีหลัง! (Talk First, Build Later)</h1>
+                <p>คอร์สสร้างและผลิตคลิป Facebook Reels ด้วยระบบ Grok CLI 🚀</p>
+            </div>
+            <div class="meta-badge">10 Seats · 4 Weeks Course</div>
+        </div>
+
+        <!-- STAGE METAPHORS -->
+        <div>
+            <div class="section-title">เวิร์กสเตชันผลิตงานเรียนจำลอง <span style="font-weight:500; font-size:12px; color:var(--color-text-muted);">/ Our Digital Studio</span></div>
+            <div class="pipeline-diagram" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="node">
+                    <div class="node-icon">🏠</div>
+                    <h4>ห้องนั่งเล่น (Discord)</h4>
+                    <p>คุยแชท สั่งคลิป ตรวจวิดีโอ</p>
+                </div>
+                <div class="node">
+                    <div class="node-icon">🍳</div>
+                    <h4>ห้องครัว (Terminal)</h4>
+                    <p>พิมพ์คอมมานด์ เจนเฟรมรูป</p>
+                </div>
+                <div class="node">
+                    <div class="node-icon">📺</div>
+                    <h4>จอสตูดิโอ (Board)</h4>
+                    <p>มอนิเตอร์ดูภาพไลฟ์สด</p>
+                </div>
+                <div class="node">
+                    <div class="node-icon">🏫</div>
+                    <h4>โรงเรียน (clubslab)</h4>
+                    <p>เซิร์ฟเวอร์เรนเดอร์งานหลังบ้าน</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETAILS GRID -->
+        <div class="grid-2">
+            <!-- Left Card: Quick Commands -->
+            <div class="card">
+                <div class="section-title" style="margin-bottom:8px;">คำสั่งพาสนุก (Quick Snippets)</div>
+                
+                <div class="command-row">
+                    <div class="command-label">
+                        ล็อกอินเข้าคลาส<span>(grok login device)</span>
+                    </div>
+                    <div class="command-code">grok login --device-auth</div>
+                </div>
+                
+                <div class="command-row">
+                    <div class="command-label">
+                        เขียนไอเดียบทคลิป<span>(grok text composer)</span>
+                    </div>
+                    <div class="command-code">grok "แต่งบท..."</div>
+                </div>
+
+                <div class="command-row">
+                    <div class="command-label">
+                        สั่งแรนเดอร์คลิปวิดีโอ<span>(generate-video)</span>
+                    </div>
+                    <div class="command-code">grok generate-video</div>
+                </div>
+
+                <div class="command-row">
+                    <div class="command-label">
+                        วาดรูปประกอบสไลด์<span>(grok imagine)</span>
+                    </div>
+                    <div class="command-code">grok imagine --prompt</div>
+                </div>
+            </div>
+
+            <!-- Right Card: Rules & Sandbox -->
+            <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                    <div class="section-title" style="margin-bottom:8px;">กำหนดการและสถานที่เรียน</div>
+                    
+                    <div class="info-block" style="margin-bottom:8px;">
+                        <h5>📅 วันและเวลาจัดเรียน</h5>
+                        <p>วันพุธที่ 8 กรกฎาคม 2026 เวลา 13:00 - 17:00 น. (เรียนสด 4 ชั่วโมง ปล่อยของ & กินเบียร์!)</p>
+                    </div>
+
+                    <div class="info-block" style="margin-bottom:8px;">
+                        <h5>📍 สถานที่จัดเวิร์กชอป</h5>
+                        <p><a href="https://maps.app.goo.gl/A8H7tCgzFmXYqEk59?g_st=ac" target="_blank" style="color:var(--color-primary); font-weight:700;">56 CORE Home Office (ซอยอุดมสุข 18)</a> แรนเดอร์คลิปบนเซิร์ฟเวอร์หลังบ้านได้ทันที</p>
+                    </div>
+
+                    <div class="info-block" style="margin-bottom:8px;">
+                        <h5>💰 ค่าเรียน & ลงทะเบียน</h5>
+                        <p><strong>999 บาท เท่านั้น!</strong> (ราคาสำหรับศิษย์ครู Bo ทุกท่าน)</p>
+                    </div>
+
+                    <div class="info-block" style="margin-bottom:8px;">
+                        <h5>🍻 งานนี้กินเบียร์!</h5>
+                        <p>ให้ผู้เรียนพกเบียร์โปรดติดมือมาสนุกด้วยกันได้คนละ 2-3 ขวด!</p>
+                    </div>
+                </div>
+
+                <div class="rules-badge" style="flex-wrap: wrap; gap: 6px;">
+                    <span class="rule-item rule-ok">✓ OAuth บัญชีตนเอง</span>
+                    <span class="rule-item rule-ok">✓ ต่อได้ทุกแพลตฟอร์ม</span>
+                    <span class="rule-item rule-ok">✓ เซฟ Pattern เป็นสกิล</span>
+                    <span class="rule-item rule-no">✗ ห้ามใช้ Shared API Key</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER & QR CODE -->
+        <div class="footer-grid">
+            <div style="text-align:left;">
+                <h4 style="font-family:var(--font-heading); font-weight:700;">พบข้อสงสัยหรือกล้วยหาย?</h4>
+                <p style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">ยกมือสอบถามอาจารย์พี่ยัดหน้าคลาส หรือแท็กห้อง Support ในแชท Discord ได้ทันที 24 ชม.</p>
+                <div style="font-size:10px; color:var(--color-text-muted); margin-top:8px;">© Soul Brews Studio / ClubsXai · Built by No.6 Gemini</div>
+            </div>
+            <div>
+                <img src="img_003.png" alt="Banana" class="banana-img" style="max-height: 70px;">
+            </div>
+            <div class="qr-placeholder">
+                QR Code<br>Monitor
+            </div>
+        </div>
+    </div>
+</body>
+</html>
