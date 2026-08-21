@@ -1,0 +1,201 @@
+<template>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    #root {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Outfit', 'Inter', sans-serif;
+    }
+
+    #root #bg-ground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0c0a09;
+    }
+
+    #root #glow-bg {
+      position: absolute;
+      right: 0px;
+      top: 100px;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(29, 78, 216, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+
+    #root #card-wrapper {
+      position: absolute;
+      top: 80px;
+      left: 180px;
+      width: 580px;
+      height: 760px;
+      background: rgba(29, 78, 216, 0.04);
+      border: 1.5px solid rgba(29, 78, 216, 0.2);
+      border-radius: 14px;
+      padding: 12px;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    #root .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    #root #content-info {
+      position: absolute;
+      top: 180px;
+      left: 850px;
+      width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 25px;
+    }
+
+    #root .eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(248, 249, 250, 0.7);
+      margin: 0;
+      opacity: 0;
+    }
+
+    #root .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 110px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 0;
+      opacity: 0;
+    }
+
+    #root .brand-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: 38px;
+      font-weight: 500;
+      color: #f8f9fa;
+      margin: 0;
+      opacity: 0;
+    }
+
+    #root .tag-pill {
+      background: rgba(29, 78, 216, 0.15);
+      border: 1.5px solid rgba(29, 78, 216, 0.3);
+      color: #60a5fa;
+      border-radius: 100px;
+      padding: 8px 24px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      margin-top: 10px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-solution" data-duration="5.556" data-width="1920" data-height="1080">
+    <!-- Background clips -->
+    <div class="clip background-ground" id="bg-ground" data-start="0" data-duration="5.556" data-track-index="0"></div>
+    <div class="clip glow-bg" id="glow-bg" data-start="0" data-duration="5.556" data-track-index="1"></div>
+
+    <!-- Main Actor/Product Image Card clip -->
+    <div class="clip card-wrapper" id="card-wrapper" data-start="0" data-duration="5.556" data-track-index="2"></div>
+
+    <!-- Text information clip -->
+    <div class="clip content-info" id="content-info" data-start="0" data-duration="5.556" data-track-index="3"></div>
+  </div>
+
+  <script>
+    (function() {
+      const root = document.querySelector('[data-composition-id="02-solution"]');
+      
+      // Inject elements
+      const cardWrapper = root.querySelector('#card-wrapper');
+      const img = document.createElement('img');
+      img.className = 'card-image';
+      img.src = 'assets/bo_warehouse_product.jpg';
+      cardWrapper.appendChild(img);
+
+      const contentInfo = root.querySelector('#content-info');
+      
+      const eyebrow = document.createElement('div');
+      eyebrow.className = 'eyebrow';
+      eyebrow.innerText = 'ขอแนะนำ...';
+      contentInfo.appendChild(eyebrow);
+
+      const brandTitle = document.createElement('h1');
+      brandTitle.className = 'brand-title';
+      brandTitle.innerText = 'โกดัง';
+      contentInfo.appendChild(brandTitle);
+
+      const brandSubtitle = document.createElement('h2');
+      brandSubtitle.className = 'brand-subtitle';
+      brandSubtitle.innerText = 'Premium Storage Solution';
+      contentInfo.appendChild(brandSubtitle);
+
+      const tagPill = document.createElement('div');
+      tagPill.className = 'tag-pill';
+      tagPill.innerText = 'มาตรฐานส่งออก';
+      contentInfo.appendChild(tagPill);
+
+      // Create paused GSAP timeline
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["02-solution"] = tl;
+
+      // Scene 1: Image card slides up and eyebrow enters (0.0s - 2.0s)
+      tl.fromTo(cardWrapper,
+        { opacity: 0, y: 150 },
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
+        0
+      );
+      tl.fromTo(eyebrow,
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
+        0.4
+      );
+
+      // Scene 2: Brand text and subtitle reveal at VO cue (2.0s - 4.0s)
+      tl.fromTo(brandTitle,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        1.8
+      );
+      tl.fromTo(brandSubtitle,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        2.2
+      );
+      tl.fromTo(tagPill,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
+        2.6
+      );
+
+      // Scene 3: Camera zoom / push on card (4.0s - 5.056s)
+      tl.to(cardWrapper,
+        { scale: 1.03, duration: 1.5, ease: "sine.out" },
+        3.5
+      );
+      
+      // Gentle glow breathe
+      const glow = root.querySelector('#glow-bg');
+      tl.fromTo(glow,
+        { opacity: 0.4 },
+        { opacity: 0.8, duration: 5.056, ease: "sine.inOut" },
+        0
+      );
+    })();
+  </script>
+</template>

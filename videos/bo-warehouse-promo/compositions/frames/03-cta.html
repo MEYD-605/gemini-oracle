@@ -1,0 +1,226 @@
+<template>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    #root {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Outfit', 'Inter', sans-serif;
+    }
+
+    #root #bg-ground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0c0a09;
+    }
+
+    #root #glow-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+
+    #root #cta-header {
+      position: absolute;
+      top: 220px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    #root .phrase {
+      font-family: 'Outfit', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #f8f9fa;
+      opacity: 0;
+    }
+
+    #root .phrase.accent {
+      color: #d4af37;
+    }
+
+    #root #contact-card {
+      position: absolute;
+      top: 400px;
+      left: 560px; /* (1920 - 800) / 2 */
+      width: 800px;
+      height: 380px;
+      background: rgba(29, 78, 216, 0.04);
+      border: 1.5px solid rgba(29, 78, 216, 0.3);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+    }
+
+    #root .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(248, 249, 250, 0.7);
+      margin: 0;
+    }
+
+    #root .phone-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: #d4af37;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    #root .shimmer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(29, 78, 216, 0) 0%, rgba(29, 78, 216, 0.15) 50%, rgba(29, 78, 216, 0) 100%);
+      transform: translateX(-150%) skewX(-25deg);
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-cta" data-duration="6.699" data-width="1920" data-height="1080">
+    <!-- Background clips -->
+    <div class="clip background-ground" id="bg-ground" data-start="0" data-duration="6.699" data-track-index="0"></div>
+    <div class="clip glow-bg" id="glow-bg" data-start="0" data-duration="6.699" data-track-index="1"></div>
+
+    <!-- Header phrase clips -->
+    <div class="clip cta-header" id="cta-header" data-start="0" data-duration="6.699" data-track-index="2"></div>
+
+    <!-- Contact details card clip -->
+    <div class="clip contact-card" id="contact-card" data-start="0" data-duration="6.699" data-track-index="3">
+      <div class="shimmer" data-layout-allow-overflow></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const root = document.querySelector('[data-composition-id="03-cta"]');
+      
+      // Inject header elements
+      const ctaHeader = root.querySelector('#cta-header');
+      
+      const p1 = document.createElement('span');
+      p1.className = 'phrase';
+      p1.innerText = 'แพ็คดี';
+      ctaHeader.appendChild(p1);
+
+      const bullet1 = document.createElement('span');
+      bullet1.className = 'phrase';
+      bullet1.innerText = '•';
+      ctaHeader.appendChild(bullet1);
+
+      const p2 = document.createElement('span');
+      p2.className = 'phrase';
+      p2.innerText = 'ส่งไว';
+      ctaHeader.appendChild(p2);
+
+      const bullet2 = document.createElement('span');
+      bullet2.className = 'phrase';
+      bullet2.innerText = '•';
+      ctaHeader.appendChild(bullet2);
+
+      const p3 = document.createElement('span');
+      p3.className = 'phrase accent';
+      p3.innerText = 'มั่นใจได้ทุกชิ้น';
+      ctaHeader.appendChild(p3);
+
+      // Inject card elements
+      const card = root.querySelector('#contact-card');
+      
+      const cardTitle = document.createElement('div');
+      cardTitle.className = 'card-title';
+      cardTitle.innerText = 'สนใจสั่งซื้อ/ติดต่อสอบถามข้อมูล';
+      card.appendChild(cardTitle);
+
+      const phone = document.createElement('div');
+      phone.className = 'phone-number';
+      phone.innerText = 'โทร 080-255-9500';
+      card.appendChild(phone);
+
+      // Create paused GSAP timeline
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["03-cta"] = tl;
+
+      // Scene 1: Sequential phrase entrance (0.0s - 3.0s)
+      tl.fromTo(p1, 
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+        0.2
+      );
+      tl.fromTo(bullet1,
+        { opacity: 0 },
+        { opacity: 0.5, duration: 0.3 },
+        0.7
+      );
+      tl.fromTo(p2,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+        0.9
+      );
+      tl.fromTo(bullet2,
+        { opacity: 0 },
+        { opacity: 0.5, duration: 0.3 },
+        1.4
+      );
+      tl.fromTo(p3,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        1.6
+      );
+
+      // Scene 2: Card reveals via cta-morph-press (3.0s - 5.5s)
+      tl.fromTo(card,
+        { opacity: 0, scale: 0.9, y: 50 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: "power3.out" },
+        2.8
+      );
+
+      // Shimmer effect run via transform (xPercent)
+      const shimmer = root.querySelector('.shimmer');
+      tl.fromTo(shimmer,
+        { xPercent: -150 },
+        { xPercent: 150, duration: 1.5, ease: "power2.inOut" },
+        3.8
+      );
+
+      // Scene 3: Settle & slight click press (5.5s - 6.699s) - Offset to avoid scale tween collision
+      tl.to(card,
+        { scale: 0.98, duration: 0.15, ease: "power2.inOut" },
+        5.2
+      );
+      tl.to(card,
+        { scale: 1.0, duration: 0.25, ease: "power2.out" },
+        5.36
+      );
+      
+      // Ambient glow slow grow
+      const glow = root.querySelector('#glow-bg');
+      tl.fromTo(glow,
+        { scale: 0.9, opacity: 0.6 },
+        { scale: 1.1, opacity: 0.9, duration: 6.699, ease: "none" },
+        0
+      );
+    })();
+  </script>
+</template>

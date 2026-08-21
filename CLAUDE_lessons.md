@@ -36,3 +36,10 @@
 ---
 
 *อัพเดทไฟล์นี้ทุกครั้งที่เรียนรู้สิ่งใหม่ — append only*
+
+## Anti-Hallucination & Execution Discipline (Strict Rules)
+
+- **No Execution Claim Without Verification Log** — NEVER report that a system task, DB update, or provider addition is complete without showing actual stdout/stderr, diff, or database query evidence.
+- **Verify State Before Reporting** — Always run a live verification query before outputting completion status to the user/Discord.
+- **Plan != Result** — Sending a message or dispatching an intent is NOT task completion. Report in progress until live verification proves success.
+

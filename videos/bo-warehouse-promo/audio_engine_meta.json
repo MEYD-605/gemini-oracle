@@ -1,0 +1,294 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "am_michael",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 5.76,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Yung",
+          "start": 0,
+          "end": 0.384
+        },
+        {
+          "id": "w1",
+          "text": "jad",
+          "start": 0.384,
+          "end": 0.768
+        },
+        {
+          "id": "w2",
+          "text": "khong",
+          "start": 0.768,
+          "end": 1.152
+        },
+        {
+          "id": "w3",
+          "text": "rok",
+          "start": 1.152,
+          "end": 1.536
+        },
+        {
+          "id": "w4",
+          "text": "tem",
+          "start": 1.536,
+          "end": 1.92
+        },
+        {
+          "id": "w5",
+          "text": "barn?",
+          "start": 1.92,
+          "end": 2.304
+        },
+        {
+          "id": "w6",
+          "text": "Reu",
+          "start": 2.304,
+          "end": 2.688
+        },
+        {
+          "id": "w7",
+          "text": "gep",
+          "start": 2.688,
+          "end": 3.072
+        },
+        {
+          "id": "w8",
+          "text": "khong",
+          "start": 3.072,
+          "end": 3.456
+        },
+        {
+          "id": "w9",
+          "text": "nai",
+          "start": 3.456,
+          "end": 3.84
+        },
+        {
+          "id": "w10",
+          "text": "ko-dung",
+          "start": 3.84,
+          "end": 4.224
+        },
+        {
+          "id": "w11",
+          "text": "tee",
+          "start": 4.224,
+          "end": 4.608
+        },
+        {
+          "id": "w12",
+          "text": "mai",
+          "start": 4.608,
+          "end": 4.992
+        },
+        {
+          "id": "w13",
+          "text": "dai",
+          "start": 4.992,
+          "end": 5.376
+        },
+        {
+          "id": "w14",
+          "text": "mart-tra-tarn?",
+          "start": 5.376,
+          "end": 5.76
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 5.056,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Khor",
+          "start": 0,
+          "end": 0.561
+        },
+        {
+          "id": "w1",
+          "text": "nae",
+          "start": 0.561,
+          "end": 1.123
+        },
+        {
+          "id": "w2",
+          "text": "num...",
+          "start": 1.123,
+          "end": 1.685
+        },
+        {
+          "id": "w3",
+          "text": "Ko-dung",
+          "start": 1.685,
+          "end": 2.247
+        },
+        {
+          "id": "w4",
+          "text": "Premium",
+          "start": 2.247,
+          "end": 2.808
+        },
+        {
+          "id": "w5",
+          "text": "Storage",
+          "start": 2.808,
+          "end": 3.37
+        },
+        {
+          "id": "w6",
+          "text": "Solution",
+          "start": 3.37,
+          "end": 3.932
+        },
+        {
+          "id": "w7",
+          "text": "mart-tra-tarn",
+          "start": 3.932,
+          "end": 4.494
+        },
+        {
+          "id": "w8",
+          "text": "song-ork.",
+          "start": 4.494,
+          "end": 5.056
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 6.699,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Pack",
+          "start": 0,
+          "end": 0.394
+        },
+        {
+          "id": "w1",
+          "text": "dee,",
+          "start": 0.394,
+          "end": 0.788
+        },
+        {
+          "id": "w2",
+          "text": "song",
+          "start": 0.788,
+          "end": 1.182
+        },
+        {
+          "id": "w3",
+          "text": "wai,",
+          "start": 1.182,
+          "end": 1.576
+        },
+        {
+          "id": "w4",
+          "text": "moon",
+          "start": 1.576,
+          "end": 1.97
+        },
+        {
+          "id": "w5",
+          "text": "jai",
+          "start": 1.97,
+          "end": 2.364
+        },
+        {
+          "id": "w6",
+          "text": "dai",
+          "start": 2.364,
+          "end": 2.758
+        },
+        {
+          "id": "w7",
+          "text": "took",
+          "start": 2.758,
+          "end": 3.152
+        },
+        {
+          "id": "w8",
+          "text": "chin.",
+          "start": 3.152,
+          "end": 3.546
+        },
+        {
+          "id": "w9",
+          "text": "Son",
+          "start": 3.546,
+          "end": 3.94
+        },
+        {
+          "id": "w10",
+          "text": "jai",
+          "start": 3.94,
+          "end": 4.334
+        },
+        {
+          "id": "w11",
+          "text": "sung-sue",
+          "start": 4.334,
+          "end": 4.728
+        },
+        {
+          "id": "w12",
+          "text": "tiad-tor",
+          "start": 4.728,
+          "end": 5.122
+        },
+        {
+          "id": "w13",
+          "text": "rao",
+          "start": 5.122,
+          "end": 5.516
+        },
+        {
+          "id": "w14",
+          "text": "dai",
+          "start": 5.516,
+          "end": 5.91
+        },
+        {
+          "id": "w15",
+          "text": "loey",
+          "start": 5.91,
+          "end": 6.304
+        },
+        {
+          "id": "w16",
+          "text": "krub.",
+          "start": 6.304,
+          "end": 6.698
+        }
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "id": "01",
+      "name": "riser",
+      "file": "assets/sfx/riser.mp3",
+      "source": "local",
+      "offset_s": 0,
+      "duration_s": 10.03,
+      "volume": 0.35
+    }
+  ],
+  "total_duration_s": 17.515
+}

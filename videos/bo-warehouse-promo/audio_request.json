@@ -1,0 +1,24 @@
+{
+  "provider": "auto",
+  "speed": 1,
+  "lines": [
+    {
+      "id": "01",
+      "text": "Yung jad khong rok tem barn? Reu gep khong nai ko-dung tee mai dai mart-tra-tarn?"
+    },
+    {
+      "id": "02",
+      "text": "Khor nae num... Ko-dung Premium Storage Solution mart-tra-tarn song-ork."
+    },
+    {
+      "id": "03",
+      "text": "Pack dee, song wai, moon jai dai took chin. Son jai sung-sue tiad-tor rao dai loey krub."
+    }
+  ],
+  "bgm": {
+    "mode": "retrieve",
+    "query": "โกดัง Premium Storage Solution มาตรฐานส่งออกระดับสากล",
+    "blob": "โกดัง Premium Storage Solution มาตรฐานส่งออกระดับสากล",
+    "arc": "BAB"
+  }
+}
