@@ -1,0 +1,14 @@
+{
+  "id": "goal-001",
+  "objective": "Verify and test /goal Ralph Loop engine implementation",
+  "createdAt": "2026-08-22T04:02:00.000Z",
+  "status": "completed",
+  "maxTurns": 10,
+  "currentTurn": 1,
+  "checkpoints": [
+    { "name": "Skill Definition (~/.claude/skills/goal/SKILL.md)", "status": "passed", "evidence": "File exists, registered in Claude Code runtime" },
+    { "name": "Fail-Closed Verification Gate", "status": "passed", "evidence": "Evaluated against explicit done-criteria" },
+    { "name": "State Persistence (ψ/goals/)", "status": "passed", "evidence": "Active state ledger serialized in JSON/MD" }
+  ],
+  "judgeVerdict": "ACHIEVED"
+}
