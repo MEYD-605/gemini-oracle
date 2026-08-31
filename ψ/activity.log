@@ -582,3 +582,6 @@
 2026-08-29T11:26:46+07:00 [DISCORD/DM_REPLY] Responded to Bo DM query ('ทำไรวะ') on Discord DM channel 1511429347863433438 (msg_id: 1543114666954334238).
 2026-08-29T11:30:16+07:00 [DISCORD/DM_REPLY] Explained discord relay duplicate collision & native channels architecture difference to Bo on Discord DM channel 1511429347863433438 (msg_id: 1543115547498119208).
 2026-08-29T11:31:56+07:00 [INFRA/FIX] Unloaded com.oracle.gemini-gateway (discord-fleet-router.ts), disabled plist, consolidated on single Rust discord-relay for No.6 & No.8. Confirmed to Bo on Discord DM (msg_id: 1543115967993741446).
+2026-08-31T09:13:18+07:00 [DISCORD/DM_REPLY] Responded to Bo DM query ('ทำไร') on Discord DM channel 1511429347863433438 (msg_id: 1543805853138690098).
+2026-08-31T09:14:16+07:00 [DISCORD/DM_REPLY] Confirmed 100% readiness & clean relay status to Bo on Discord DM channel 1511429347863433438 (msg_id: 1543806098811920384).
+2026-08-31T09:14:48+07:00 [DISCORD/DM_REPLY] Sent maclab survey & readiness report to Bo on Discord DM channel 1511429347863433438 (msg_id: 1543806234430541956).
