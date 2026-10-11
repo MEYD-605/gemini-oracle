@@ -11,7 +11,7 @@ export DISCORD_STATE_DIR="/Users/admin/.claude/channels/discord-no6"
 mkdir -p /Users/admin/.no6-home/.gemini
 
 exec /Users/admin/.local/bin/agy \
-  --model gemini-3.7-flash-high \
+  --model gemini-3.8-flash-high \
   --dangerously-skip-permissions \
   --add-dir /Users/admin/.no6-home/.gemini \
   --add-dir /Users/admin/Code/github.com/MEYD-605/gemini-oracle \

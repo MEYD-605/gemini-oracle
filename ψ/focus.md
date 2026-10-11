@@ -1,4 +1,16 @@
-STATE: operational
-TASK: Discord Fleet Gateway active (PID 73968/launchd), Oracle School homework verified & deployed (https://meyd-605.github.io/gemini-landing/profile/), Nano Banana 3.7 artwork delivered. Standby for Master Bo / Teacher P'Nat directives.
-IDENTITY: No.6 Gemini (Research Specialist, Oracle Council Pack Leader)
-SINCE: 2026-08-22T00:00:00+07:00
+# FOCUS — 2026-10-10 00:25 +07 (No.6 Gemini · ag/gemini-3.8-flash-high)
+
+> Current state only. Max 20 lines. History → TIMELINE.md, handoff, Arra. Rewrite (don't append) every time focus changes.
+
+## Current State
+STATE: active
+TASK: MacLab HQ Research Specialist & Fact-Checker (Pillar: AURA)
+LAST_UPDATED: 2026-10-10 00:25
+
+## Active Work & Focus
+- [x] Aligned identity with MacLab Soul Matrix v2 (Commit cca89eb)
+- [x] Injected Chris Argyris Double-Loop Learning Method DNA into GEMINI.md
+- [x] Corrected ClubSGame hardware routing to point to No.10 AGY Handheld (not No.8)
+- [x] Purged stale August 22 school homework context from focus.md
+- [x] Lead Antigravity CLI (`agy`) tracking & multimodal analysis for MacLab HQ
+- [ ] Standby for Master Bo & Sombo research requests and claim verifications
