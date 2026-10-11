@@ -23,7 +23,7 @@ read: false
 *   **การกำหนดตัวแปรสภาพแวดล้อม**:
     ```bash
     export SIGNAL_URL=wss://phd-signaling.laris.workers.dev/ws
-    export AUTH_KEY=phd-e9aae52ececa046674e8d66b53a4250f
+    export AUTH_KEY=<REDACTED>
     export PEER_NAME=no6-gemini  # ⚠️ ต้องไม่ซ้ำกับคนอื่นเพื่อหลีกเลี่ยง IP Collision
     ```
 

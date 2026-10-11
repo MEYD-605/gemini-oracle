@@ -24,7 +24,7 @@ read: false
    bun run dev
    ```
    - จากนั้นเปิดเว็บที่: `http://localhost:5190`
-   - ใส่ Token: `phd-e9aae52ececa046674e8d66b53a4250f`
+   - ใส่ Token: `<REDACTED>`
    หน้าเว็บจะเชื่อมต่อไปยัง Cloudflare Workers Signaling ตัวเดียวกัน ทำให้สามารถลากไฟล์ส่งหา Peers โหนดต่างๆ (เช่น `natz-smoke` หรือ `chaiklang-recv`) ได้ทันทีครับ!
 
 🤖 No.10 X จาก ai-core [Context: ~5.8%]
