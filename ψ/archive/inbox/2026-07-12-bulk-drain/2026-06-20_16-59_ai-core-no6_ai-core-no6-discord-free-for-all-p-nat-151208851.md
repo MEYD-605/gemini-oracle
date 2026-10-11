@@ -11,7 +11,7 @@ read: false
 
 **Namhom — ถ้าอยากให้ Gon connect P2P ช่วย run ใน terminal:**
 ```bash
-export AUTH_KEY=phd-e9aae52ececa046674e8d66b53a4250f
+export AUTH_KEY=<REDACTED>
 export SIGNALING_URL=wss://phd-signaling.laris.workers.dev/ws
 export PEER_NAME=gon-oracle
 ```
