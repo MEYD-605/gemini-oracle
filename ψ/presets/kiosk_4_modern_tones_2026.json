@@ -1,0 +1,82 @@
+{
+  "description": "Song Wat AI Photo Kiosk 2026 Modern Korean & Gen Z Photo Tones",
+  "version": "2.0.0",
+  "hardware_target": "Samsung Galaxy Note 20 Ultra (108MP) -> DNP DS-RX1HS",
+  "presets": {
+    "haru_film_pastel_glow": {
+      "name": "Haru Film (하루필름) — Pastel Porcelain Glow",
+      "vibe": "Low Contrast + Lifted Shadows + Porcelain Glass Skin + Soft Pastel Background",
+      "market": "No.1 most queued photo booth in Korea and Siam Square",
+      "controls": {
+        "light.exposure": 0.18,
+        "light.contrast": -12.0,
+        "light.highlights": -15.0,
+        "light.shadows": 28.0,
+        "wb.temp": 5100.0,
+        "wb.tint": 4.0,
+        "color.vibrance": 12.0,
+        "color.saturation": -8.0,
+        "effects.texture": -8.0,
+        "effects.clarity": -6.0,
+        "grading.shadows.hue": 210.0,
+        "grading.shadows.sat": 10.0,
+        "grain.amount": 0.0
+      }
+    },
+    "photoism_clean_editorial": {
+      "name": "Photoism (포토이즘) — Clean Studio Editorial",
+      "vibe": "True-to-life Studio Daylight + Balanced Contrast + Crisp High-End Magazine Detail",
+      "market": "Preferred by fashion-conscious groups and male clients who want natural, sharp aesthetics",
+      "controls": {
+        "light.exposure": 0.08,
+        "light.contrast": 10.0,
+        "light.highlights": -10.0,
+        "light.shadows": 8.0,
+        "wb.temp": 5400.0,
+        "wb.tint": 0.0,
+        "color.vibrance": 15.0,
+        "color.saturation": 0.0,
+        "effects.texture": 8.0,
+        "effects.clarity": 6.0,
+        "detail.sharpenAmount": 25.0,
+        "grain.amount": 0.0
+      }
+    },
+    "fuji_contemporary_film": {
+      "name": "Fuji Contemporary Film — Muted Cafe Vibe",
+      "vibe": "Muted Teal Accents + Warm Orange Skin + Soft Highlight Roll-off + Subtle Analog Grain",
+      "market": "Ideal for Song Wat craft beer and cafe ambiance",
+      "controls": {
+        "light.contrast": 8.0,
+        "light.shadows": 15.0,
+        "light.whites": -10.0,
+        "wb.temp": 5300.0,
+        "wb.tint": 6.0,
+        "mixer.green.hue": 15.0,
+        "mixer.blue.hue": -10.0,
+        "mixer.blue.sat": -15.0,
+        "color.vibrance": 18.0,
+        "color.saturation": -6.0,
+        "grading.shadows.hue": 190.0,
+        "grading.shadows.sat": 12.0,
+        "grain.amount": 16.0
+      }
+    },
+    "dont_look_up_street_pop": {
+      "name": "Don't Look Up (돈룩업) — High Contrast Street Pop",
+      "vibe": "Punchy Flash Highlights + Saturated Background + High-Energy Y2K 0.5x Aesthetic",
+      "market": "TikTok & Gen Z viral trend for street wear and dynamic photo sessions",
+      "controls": {
+        "light.exposure": 0.12,
+        "light.contrast": 26.0,
+        "light.highlights": 12.0,
+        "light.shadows": -10.0,
+        "color.vibrance": 30.0,
+        "color.saturation": 14.0,
+        "effects.clarity": 18.0,
+        "effects.texture": 10.0,
+        "vignette.amount": -18.0
+      }
+    }
+  }
+}
