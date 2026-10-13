@@ -120,7 +120,13 @@ backup_and_copy() {
 }
 
 backup_and_copy "${SCRIPT_DIR}/config/settings.json" "${CLI_DIR}/settings.json"
-backup_and_copy "${SCRIPT_DIR}/config/hooks.json" "${CONFIG_DIR}/hooks.json"
+
+# Render hooks.json with absolute paths to ensure spawn executes correctly
+if [ -f "${CONFIG_DIR}/hooks.json" ]; then
+    echo "  📦 Backing up existing hooks.json -> hooks.json.bak.${TIMESTAMP}"
+    cp "${CONFIG_DIR}/hooks.json" "${CONFIG_DIR}/hooks.json.bak.${TIMESTAMP}"
+fi
+sed "s|{{SCRIPTS_DIR}}|${VIBE_KIT_DIR}/scripts|g" "${SCRIPT_DIR}/templates/hooks.json.template" > "${CONFIG_DIR}/hooks.json"
 echo "  ✓ Configuration updated successfully."
 
 # 5. Verify & Self-Test

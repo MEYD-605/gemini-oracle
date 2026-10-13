@@ -30,18 +30,6 @@
         "timeout": 5
       }
     ],
-    "PreToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.gemini/vibe-kit/scripts/vibe-progress.py PreToolUse",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "*",
