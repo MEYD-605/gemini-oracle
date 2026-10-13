@@ -1,0 +1,78 @@
+{
+  "description": "Song Wat AI Photo Kiosk 4 Artistic Presets for LightCraft Engine",
+  "version": "1.0.0",
+  "hardware_target": "Samsung Galaxy Note 20 Ultra (108MP) -> DNP DS-RX1HS",
+  "presets": {
+    "90s_hongkong_cinema": {
+      "name": "90s Hong Kong Cinema (สไตล์หว่อง กาไว)",
+      "vibe": "Tungsten Amber + Olive Green Shadow + 35mm Fine Grain",
+      "controls": {
+        "wb.temp": 3400.0,
+        "wb.tint": 16.0,
+        "light.contrast": 28.0,
+        "light.shadows": -15.0,
+        "grading.shadows.hue": 155.0,
+        "grading.shadows.sat": 38.0,
+        "grading.highlights.hue": 45.0,
+        "grading.highlights.sat": 35.0,
+        "grain.amount": 42.0,
+        "grain.size": 30.0,
+        "vignette.amount": -25.0
+      }
+    },
+    "cyberpunk_neon_noir": {
+      "name": "Cyberpunk Neon Noir (Midnight Yaowarat)",
+      "vibe": "Cyan/Magenta Rim Light + Midnight Blue Shadow + Craft Beer Reflections",
+      "controls": {
+        "wb.temp": 4200.0,
+        "wb.tint": 25.0,
+        "light.contrast": 35.0,
+        "light.highlights": -30.0,
+        "light.blacks": -20.0,
+        "grading.shadows.hue": 225.0,
+        "grading.shadows.sat": 55.0,
+        "grading.highlights.hue": 310.0,
+        "grading.highlights.sat": 45.0,
+        "color.vibrance": 35.0,
+        "effects.clarity": 20.0,
+        "vignette.amount": -35.0
+      }
+    },
+    "1970s_kodachrome_vintage": {
+      "name": "1970s Kodachrome Vintage (Street Classic)",
+      "vibe": "Golden Hour Warmth + Saturated Red/Ochre + Deep Blacks",
+      "controls": {
+        "wb.temp": 5800.0,
+        "wb.tint": 8.0,
+        "light.contrast": 22.0,
+        "light.whites": 18.0,
+        "light.shadows": -10.0,
+        "color.vibrance": 32.0,
+        "color.saturation": 15.0,
+        "mixer.red.sat": 25.0,
+        "mixer.yellow.sat": 20.0,
+        "grading.highlights.hue": 35.0,
+        "grading.highlights.sat": 28.0,
+        "grain.amount": 30.0,
+        "vignette.amount": -18.0
+      }
+    },
+    "y2k_paparazzi_direct_flash": {
+      "name": "Y2K Paparazzi Direct Flash (Nightclub VIP)",
+      "vibe": "Direct Hard Flash + Dewy Gloss Skin + Crushed Dark Background",
+      "controls": {
+        "wb.temp": 5200.0,
+        "wb.tint": -5.0,
+        "light.exposure": 0.35,
+        "light.contrast": 45.0,
+        "light.highlights": 30.0,
+        "light.shadows": -45.0,
+        "light.blacks": -35.0,
+        "effects.clarity": 25.0,
+        "effects.texture": 15.0,
+        "color.vibrance": 15.0,
+        "vignette.amount": -55.0
+      }
+    }
+  }
+}
