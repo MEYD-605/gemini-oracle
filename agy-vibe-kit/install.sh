@@ -64,10 +64,45 @@ if [ -d "${SCRIPT_DIR}/skills" ]; then
     echo "  ✓ Skills deployed to ${AGENTS_DIR}/skills/"
 fi
 
-if [ -f "${SCRIPT_DIR}/bin/rtk" ]; then
+if command -v rtk &>/dev/null; then
+    echo "  ✓ RTK is already installed: $(command -v rtk)"
+elif [ -f "${SCRIPT_DIR}/bin/rtk" ]; then
     cp "${SCRIPT_DIR}/bin/rtk" "${HOME}/.local/bin/rtk"
     chmod +x "${HOME}/.local/bin/rtk"
     echo "  ✓ RTK binary deployed to ${HOME}/.local/bin/rtk"
+else
+    echo "⬇️ Downloading RTK (Rust Token Killer) v0.51.0..."
+    OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+    ARCH="$(uname -m)"
+    RTK_URL=""
+    if [ "${OS}" = "darwin" ]; then
+        if [ "${ARCH}" = "arm64" ]; then
+            RTK_URL="https://github.com/rtk-ai/rtk/releases/download/v0.51.0/rtk-aarch64-apple-darwin.tar.gz"
+        else
+            RTK_URL="https://github.com/rtk-ai/rtk/releases/download/v0.51.0/rtk-x86_64-apple-darwin.tar.gz"
+        fi
+    elif [ "${OS}" = "linux" ]; then
+        if [ "${ARCH}" = "aarch64" ] || [ "${ARCH}" = "arm64" ]; then
+            RTK_URL="https://github.com/rtk-ai/rtk/releases/download/v0.51.0/rtk-aarch64-unknown-linux-gnu.tar.gz"
+        else
+            RTK_URL="https://github.com/rtk-ai/rtk/releases/download/v0.51.0/rtk-x86_64-unknown-linux-musl.tar.gz"
+        fi
+    fi
+
+    if [ -n "${RTK_URL}" ]; then
+        TMP_DIR="$(mktemp -d)"
+        if curl -fsSL "${RTK_URL}" -o "${TMP_DIR}/rtk.tar.gz"; then
+            tar -xzf "${TMP_DIR}/rtk.tar.gz" -C "${TMP_DIR}"
+            if [ -f "${TMP_DIR}/rtk" ]; then
+                cp "${TMP_DIR}/rtk" "${HOME}/.local/bin/rtk"
+                chmod +x "${HOME}/.local/bin/rtk"
+                echo "  ✓ RTK downloaded and installed to ${HOME}/.local/bin/rtk"
+            fi
+        else
+            echo "  ⚠️ Could not download pre-built RTK binary. You can build via: cargo install rtk-ai"
+        fi
+        rm -rf "${TMP_DIR}"
+    fi
 fi
 echo "  ✓ Core scripts deployed successfully."
 

@@ -44,9 +44,11 @@ agy-vibe-kit/
 ### 1. ความต้องการขั้นต่ำของระบบ
 - **ระบบปฏิบัติการ**: macOS หรือ Linux (รวมทั้ง WSL บน Windows)
 - **เครื่องมือจำเป็น**: `python3`, `git`, `curl`
-- **Antigravity CLI**: ติดตั้งผ่าน Node.js
+- **Antigravity CLI**: ติดตั้งจากเว็บทางการของ Google
   ```bash
-  npm install -g @google/antigravity-cli
+  # ดาวน์โหลดไบนารีอย่างเป็นทางการจาก Google
+  # https://antigravity.google.com
+  # นำไฟล์ไบนารี 'agy' วางไว้ใน ~/.local/bin/ หรือโฟลเดอร์ใน $PATH
   ```
 
 ### 2. รันคำสั่งติดตั้ง
