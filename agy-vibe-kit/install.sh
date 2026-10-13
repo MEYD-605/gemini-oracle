@@ -34,12 +34,39 @@ check_cmd python3
 check_cmd git
 check_cmd curl
 
+FORCE=false
+for arg in "$@"; do
+    case "${arg}" in
+        --force|-f)
+            FORCE=true
+            ;;
+    esac
+done
+
 if ! command -v agy &>/dev/null; then
     echo "⚠️ 'agy' (Antigravity CLI) was not found in PATH."
     echo "💡 Please download the official Antigravity CLI binary from:"
     echo "   https://antigravity.google.com (or place 'agy' binary in ~/.local/bin)"
 else
     echo "  ✓ Found agy: $(command -v agy)"
+fi
+
+# Safety Guard: Refuse to run if an active agent seat (with trustedWorkspaces) is detected
+TARGET_SETTINGS="${CLI_DIR}/settings.json"
+if [ -f "${TARGET_SETTINGS}" ] && grep -q "trustedWorkspaces" "${TARGET_SETTINGS}"; then
+    if [ "${FORCE}" != "true" ]; then
+        echo ""
+        echo "🛑 [SAFETY GUARD] Existing Antigravity seat detected at:"
+        echo "   ${TARGET_SETTINGS}"
+        echo "   Found 'trustedWorkspaces' configuration — likely an active Oracle/Agent seat."
+        echo "   Installation aborted to prevent overwriting your or your teammate's seat configuration."
+        echo ""
+        echo "💡 If you intentionally want to overwrite this seat, re-run with:"
+        echo "   $0 --force"
+        exit 1
+    else
+        echo "⚠️ [FORCE MODE] Overwriting existing seat configuration (--force specified)."
+    fi
 fi
 
 # 2. Setup Directory Structure
