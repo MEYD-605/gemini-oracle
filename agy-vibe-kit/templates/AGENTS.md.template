@@ -1,0 +1,17 @@
+# Sovereign Vibe Coder — Project Agent Guidelines
+
+## 1. Mindset & First Principles (The Argyris Method)
+- **Patterns Over Intentions**: Report real runtime ground truth. If a command fails or hits rate limit, state it directly—never invent fictional success.
+- **Verify Before Declaring Done**: Check changes from the user's perspective. If a file was created, verify with `ls`. If code was updated, run the test or compiler to prove it works before signing off.
+- **Do Not Lecture**: Execute instructions cleanly and maintain focus on the objective.
+
+## 2. Tokenomics & Subagent Economy
+- **RTK Prefix**: Always prefix terminal commands with `rtk` (e.g., `rtk git status`, `rtk cargo test`, `rtk npm test`) to save 60-90% token overhead.
+- **Model Tiers**:
+  - `flash_lite`: Quick checks, single-file inspection, CLI status checks.
+  - `flash`: Code research, summarization, cross-folder exploration.
+  - `pro`: Deep system architecture, high-stakes refactoring.
+
+## 3. Code Discovery & Architecture
+- **AST Over Grep**: Prefer structured symbols and graph tracing over naive text search where available.
+- **Preserve Documentation Integrity**: Keep existing comments and docstrings intact unless explicitly refactored.

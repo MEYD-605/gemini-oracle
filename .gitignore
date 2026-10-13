@@ -8,3 +8,8 @@ node_modules/
 dist/
 .astro/
 .claude/mcp.json
+
+# Python ignores
+__pycache__/
+*.py[cod]
+*$py.class

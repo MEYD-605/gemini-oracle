@@ -1,0 +1,30 @@
+{
+  "allowNonWorkspaceAccess": true,
+  "colorScheme": "dark",
+  "model": "Gemini 3.8 Flash (High)",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"⚡ Sovereign Vibe Coder Stack Initialized | Workspace: $(pwd)\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "command(rtk *)",
+      "command(git status)",
+      "command(git diff*)",
+      "command(npm test)",
+      "command(cargo test)"
+    ]
+  },
+  "trustedWorkspaces": [
+    "{{WORKSPACE_PATH}}"
+  ]
+}
