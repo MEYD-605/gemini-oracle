@@ -516,7 +516,7 @@ Hook (🏁)]: สรุป Token Usage, Prompt Cache Hit Rate, และ Context
                            │  2. Inject เข้าเทอร์มินัล
                            ▼
 ┌────────────────────────────────────────────────────────┐
-│ Tmux Session (06-gemini:1) ➔ AGY CLI (v1.3.3)          │
+│ Tmux Session (06-gemini:1) ➔ AGY CLI (v1.3.4)          │
 │                                                        │
 │  [PreToolUse Hook]                                     │
 │    ├── ตรวจพบคำสั่งเสี่ยง ➔ เตือน: ⛔ terminal (เสี่ยง)   │
