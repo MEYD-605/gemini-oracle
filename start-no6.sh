@@ -13,6 +13,5 @@ mkdir -p /Users/admin/.no6-home/.gemini
 exec /Users/admin/.local/bin/agy \
   --model gemini-3.8-flash-high \
   --dangerously-skip-permissions \
-  --add-dir /Users/admin/.no6-home/.gemini \
   --add-dir /Users/admin/Code/github.com/MEYD-605/gemini-oracle \
   --add-dir /Users/admin/Code/github.com/MEYD-605/gemini-oracle/ψ
