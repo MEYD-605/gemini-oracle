@@ -1,14 +1,14 @@
-# FOCUS — 2026-10-16 09:26 +07 (No.6 Gemini · Gemini 4 Argon (High))
+# FOCUS — 2026-10-18 14:24 +07 (No.6 Gemini · Gemini 3.8 Flash (High))
 
-> Current state only. Max 20 lines. History → TIMELINE.md, handoff, Arra. Rewrite (don't append) every time focus changes.
+> Current state only. Max 20 lines. History → TIMELINE.md, handoff, Arra. Rewrite (don't append).
 
 ## Current State
 STATE: active
-TASK: MacLab HQ Research Specialist, Fact-Checker & Photo Cull/Edit Standard Verification (Pillar: AURA)
-LAST_UPDATED: 2026-10-16 09:26
+TASK: MacLab HQ Research Lead, Fact-Checker & Multi-Seat Intelligence (Pillar: AURA)
+LAST_UPDATED: 2026-10-18 14:24
 
 ## Active Work & Focus
-- [x] Photo Standard v3 (`skill17` / `photo_edit.py` / `cull.py`) & Cull Lesson Rounds 1–3 completed
-- [x] Dräger Terminal 21 (15.10.69, 321 frames) independent cull exam completed (`213 keep / 108 cut`)
-- [x] Verified fleet-wide health via `fleet-drift-check.py` (195/198 passing) & 7/7 Vital Tubes
-- [ ] Standby for Master Bo & Sombo research requests, photo culling, and claim verifications
+- [x] Polymath DNA v4 live & verified (D-047: T1 STOP 5/5, T2 Plan≠Order 5/5, N6B/C 5/5)
+- [x] D-045 launcher update: start-no6.sh reads model dynamically from desired-state.yaml
+- [x] 7/7 Vital Tubes operational & Discord relay active (chat_id: 1511429347863433438)
+- [ ] Standby for Master Bo & Sombo research requests, ConPass / Club S scouting, and claim falsifications
