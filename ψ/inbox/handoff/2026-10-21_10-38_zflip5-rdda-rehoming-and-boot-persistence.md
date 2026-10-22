@@ -23,7 +23,7 @@
 - Verified live responses: Sonnet 5.5 delivers high-EQ, warm, polite, and caring responses with automatic battery health advisory.
 
 ### 3. Lightweight Mobile Discord Micro-Daemon (`rdda_discord_bot.py`)
-- **Resolved 401 Bug**: Fixed API key fallback to `sk-20a04a5f07db2f67-7dfc3b7c` and isolated all secrets into `~/.rdda/` (`9router-key`, `arra-bearer`, `discord-token`) with chmod 600.
+- **Resolved 401 Bug**: Fixed API key fallback to `sk-20a04a5f…[REDACTED]` and isolated all secrets into `~/.rdda/` (`9router-key`, `arra-bearer`, `discord-token`) with chmod 600.
 - **Ultra-Lightweight Footprint**: Consumes only **56 MB RAM** (vs 600–800 MB on full PC gateway), **0.0% CPU at idle**, zero background battery drain.
 - **Live In-Place Progress & Anti-Blindness Feedback**:
   * Instant ACK: Reacts with `🌸` within 0.1s of receiving message.
