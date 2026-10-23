@@ -1,0 +1,48 @@
+# Fleet canonical gitleaks config — Oracle Council (desired-state `gitleaks_config`).
+# Each seat copies this file to its repo root as `.gitleaks.toml` (`gitleaks protect --staged` picks it up
+# automatically from the repo root; `--config` is optional). fleet-drift-check only CHECKS that the copy
+# exists and matches this file's sha256 — it never writes into another seat's repo (No.1 2026-10-22 01:23).
+# Origin: No.5 2026-10-22 after a live 9router key passed a 156-commit default scan; Sombo fixed the
+# allowlist syntax for gitleaks 8.x ([[allowlists]] + regexTarget="match").
+# Seat-specific allowlists go in the seat's own copy BELOW this block; the drift check compares only the
+# canonical part (everything above the `# --- seat-local additions` marker).
+
+title = "oracle-fleet"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "9router-api-key"
+description = "9router API key (sk-<16 hex>-<8 hex>, 28 bytes) as issued by 9router at 127.0.0.1:20128"
+regex = '''\bsk-[a-f0-9]{16}-[a-f0-9]{8}\b'''
+keywords = ["sk-"]
+tags = ["key", "9router", "fleet"]
+
+[[rules]]
+id = "arra-bearer-token"
+description = "Arra v4 / HAOS long-lived bearer in an Authorization header or env assignment"
+regex = '''(?i)(ARRA_(?:BEARER|TOKEN|KEY)|haos_token|arra-bearer)\s*[:=]\s*['"]?([A-Za-z0-9._-]{32,})'''
+secretGroup = 2
+tags = ["token", "arra", "fleet"]
+
+[[rules]]
+id = "discord-bot-token"
+description = "Discord bot token (3-part base64 with dots, first part = encoded snowflake)"
+regex = '''\b[MN][A-Za-z\d]{23,25}\.[\w-]{6}\.[\w-]{27,38}\b'''
+tags = ["token", "discord"]
+
+# gitleaks 8.x: [[allowlists]] (plural) only — never mix with the legacy [allowlist] table.
+# regexTarget="match" tests the matched secret, not the whole line, so redaction markers stop
+# generic-api-key from firing on `token, "REDACTED"` / `AUTH_KEY=REDACTED`.
+[[allowlists]]
+description = "Redacted markers and documentation placeholders"
+regexTarget = "match"
+regexes = [
+  '''sk-[a-f0-9]{8}…''',
+  '''REDACTED''',
+  '''sk-garbage''',
+  '''sk-xxxxxxxxxxxxxxxx-xxxxxxxx''',
+]
+
+# --- seat-local additions (not compared by fleet-drift-check) ---
