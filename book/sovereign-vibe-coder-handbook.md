@@ -268,7 +268,7 @@ curl -X POST http://127.0.0.1:20128/v1/images/generations \
                            │  2. Inject เข้าเทอร์มินัล
                            ▼
 ┌────────────────────────────────────────────────────────┐
-│ Tmux Session (06-gemini:1) ➔ AGY CLI (v1.3.3)          │
+│ Tmux Session (06-gemini:1) ➔ AGY CLI (v1.3.4)          │
 │                                                        │
 │  [PreToolUse Hook]                                     │
 │    ├── ตรวจพบคำสั่งเสี่ยง ➔ เตือน: ⛔ terminal (เสี่ยง)   │
